@@ -76,23 +76,45 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
 }
 .hero-bg{
   position:absolute;inset:0;
-  background:
-    linear-gradient(180deg,rgba(26,54,93,0.92) 0%,rgba(44,95,138,0.85) 40%,rgba(74,144,196,0.8) 70%,rgba(122,181,224,0.75) 100%),
-    repeating-linear-gradient(90deg,rgba(255,255,255,0.06) 0px,rgba(255,255,255,0.06) 2px,transparent 2px,transparent 60px),
-    repeating-linear-gradient(0deg,rgba(255,255,255,0.03) 0px,rgba(255,255,255,0.03) 1px,transparent 1px,transparent 40px),
-    linear-gradient(135deg,#1a365d 0%,#2c5282 30%,#4299e1 70%,#7ab5e0 100%);
+  background:linear-gradient(180deg,#87CEEB 0%,#5BA3D9 30%,#3A7CC3 60%,#2C5F8A 100%);
 }
+/* Buildings */
 .hero-bg::before{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:70%;
+  content:'';position:absolute;bottom:0;left:0;right:0;height:100%;
   background:
-    linear-gradient(0deg,rgba(26,54,93,0.6) 0%,transparent 100%),
-    repeating-linear-gradient(90deg,rgba(200,220,240,0.12) 0px,rgba(200,220,240,0.12) 40px,transparent 40px,transparent 100px);
+    /* Building 1 - tall left */
+    linear-gradient(180deg,rgba(180,210,235,0.9) 0%,rgba(120,170,210,0.85) 50%,rgba(80,130,180,0.8) 100%) no-repeat 5% bottom/8% 95%,
+    /* Building 2 */
+    linear-gradient(180deg,rgba(160,195,225,0.88) 0%,rgba(100,155,200,0.82) 50%,rgba(60,120,170,0.78) 100%) no-repeat 12% bottom/7% 88%,
+    /* Building 3 - tall center-left */
+    linear-gradient(180deg,rgba(140,185,220,0.92) 0%,rgba(90,145,195,0.86) 50%,rgba(50,110,165,0.82) 100%) no-repeat 20% bottom/9% 98%,
+    /* Building 4 */
+    linear-gradient(180deg,rgba(170,205,230,0.85) 0%,rgba(110,165,205,0.8) 50%,rgba(70,130,180,0.75) 100%) no-repeat 28% bottom/6% 82%,
+    /* Building 5 - center tall */
+    linear-gradient(180deg,rgba(130,180,218,0.93) 0%,rgba(80,140,192,0.88) 50%,rgba(45,105,160,0.84) 100%) no-repeat 35% bottom/10% 100%,
+    /* Building 6 */
+    linear-gradient(180deg,rgba(155,192,222,0.87) 0%,rgba(95,150,198,0.82) 50%,rgba(55,115,168,0.78) 100%) no-repeat 44% bottom/7% 85%,
+    /* Building 7 - tall right-center */
+    linear-gradient(180deg,rgba(135,182,219,0.91) 0%,rgba(85,142,193,0.86) 50%,rgba(48,108,162,0.82) 100%) no-repeat 52% bottom/9% 96%,
+    /* Building 8 */
+    linear-gradient(180deg,rgba(165,200,228,0.86) 0%,rgba(105,160,202,0.81) 50%,rgba(65,125,175,0.76) 100%) no-repeat 60% bottom/6% 80%,
+    /* Building 9 - tall right */
+    linear-gradient(180deg,rgba(145,188,221,0.9) 0%,rgba(88,148,196,0.85) 50%,rgba(52,112,166,0.8) 100%) no-repeat 67% bottom/8% 92%,
+    /* Building 10 */
+    linear-gradient(180deg,rgba(175,208,232,0.84) 0%,rgba(115,168,208,0.79) 50%,rgba(75,135,182,0.74) 100%) no-repeat 74% bottom/7% 78%,
+    /* Building 11 - far right tall */
+    linear-gradient(180deg,rgba(150,190,223,0.89) 0%,rgba(92,152,199,0.84) 50%,rgba(58,118,170,0.8) 100%) no-repeat 82% bottom/8% 90%,
+    /* Building 12 */
+    linear-gradient(180deg,rgba(160,198,226,0.86) 0%,rgba(100,158,201,0.81) 50%,rgba(62,122,173,0.77) 100%) no-repeat 90% bottom/7% 84%;
 }
+/* Window reflections */
 .hero-bg::after{
   content:'';position:absolute;inset:0;
   background:
-    radial-gradient(ellipse at 30% 80%,rgba(255,255,255,0.08) 0%,transparent 50%),
-    radial-gradient(ellipse at 70% 20%,rgba(100,180,240,0.12) 0%,transparent 40%);
+    repeating-linear-gradient(90deg,rgba(255,255,255,0.15) 0px,rgba(255,255,255,0.15) 1px,transparent 1px,transparent 8px),
+    repeating-linear-gradient(0deg,rgba(255,255,255,0.08) 0px,rgba(255,255,255,0.08) 1px,transparent 1px,transparent 12px),
+    radial-gradient(ellipse at 40% 30%,rgba(255,255,255,0.15) 0%,transparent 40%),
+    radial-gradient(ellipse at 70% 50%,rgba(200,230,255,0.1) 0%,transparent 35%);
 }
 .hero-overlay{
   position:absolute;inset:0;
