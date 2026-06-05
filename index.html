@@ -22,18 +22,6 @@
 html{scroll-behavior:smooth;font-size:16px}
 body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;line-height:1.7}
 
-/* ===== TOP BAR ===== */
-.topbar{
-  background:var(--red);color:var(--white);
-  padding:0 60px;height:44px;
-  display:flex;align-items:center;justify-content:space-between;
-  font-size:0.82rem;
-}
-.topbar-left{display:flex;align-items:center;gap:6px}
-.topbar-left svg{width:14px;height:14px}
-.topbar a{color:var(--white);text-decoration:none;opacity:0.9;transition:opacity 0.2s}
-.topbar a:hover{opacity:1}
-
 /* ===== NAV ===== */
 .nav{
   background:var(--white);
@@ -500,7 +488,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
 /* ===== RESPONSIVE ===== */
 @media(max-width:1024px){
   .section{padding:64px 28px}
-  .topbar,.nav{padding:0 28px}
+  .nav{padding:0 28px}
   .hero-content{padding:0 40px}
   .about-grid,.product-showcase{grid-template-columns:1fr}
   .modules-grid{grid-template-columns:repeat(2,1fr)}
@@ -510,7 +498,6 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
   .footer-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:640px){
-  .topbar{display:none}
   .nav{padding:0 16px;height:56px}
   .nav-links{display:none}
   .hero{height:auto;padding:60px 0}
