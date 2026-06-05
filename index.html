@@ -4,1119 +4,604 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>通友科技 - 十年深耕 国资保障</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<!-- system fonts -->
 <style>
-/* ==================== RESET & BASE ==================== */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  --primary: #1a56db;
-  --primary-dark: #0e3baa;
-  --primary-light: #3b82f6;
-  --accent: #f97316;
-  --dark: #0f172a;
-  --dark-800: #1e293b;
-  --dark-700: #334155;
-  --gray-100: #f1f5f9;
-  --gray-200: #e2e8f0;
-  --gray-300: #cbd5e1;
-  --gray-400: #94a3b8;
-  --gray-500: #64748b;
-  --white: #ffffff;
-  --gradient-hero: linear-gradient(135deg, #0c1a3a 0%, #1a3a6e 40%, #1a56db 100%);
-  --gradient-card: linear-gradient(135deg, #1e3a5f 0%, #1a56db 100%);
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-  --shadow-md: 0 4px 20px rgba(0,0,0,0.1);
-  --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
-  --shadow-xl: 0 20px 60px rgba(0,0,0,0.2);
-  --radius: 16px;
-  --radius-sm: 8px;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-html { scroll-behavior: smooth; font-size: 16px; }
-
-body {
-  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-  color: var(--dark);
-  background: var(--white);
-  overflow-x: hidden;
-  line-height: 1.6;
-}
-
-/* ==================== NAVIGATION ==================== */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 0 60px; height: 72px;
-  display: flex; align-items: center; justify-content: space-between;
-  transition: var(--transition);
-  background: transparent;
-}
-
-.nav.scrolled {
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 1px 20px rgba(0,0,0,0.08);
-  height: 64px;
-}
-
-.nav-logo {
-  display: flex; align-items: center; gap: 12px;
-  font-size: 1.5rem; font-weight: 900; color: var(--white);
-  text-decoration: none; letter-spacing: 1px;
-  transition: var(--transition);
-}
-
-.nav.scrolled .nav-logo { color: var(--primary); }
-
-.nav-logo-icon {
-  width: 42px; height: 42px;
-  background: linear-gradient(135deg, var(--primary-light), var(--accent));
-  border-radius: 10px; display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem; font-weight: 900; color: var(--white);
-  transition: var(--transition);
-}
-
-.nav-links {
-  display: flex; align-items: center; gap: 36px;
-  list-style: none;
-}
-
-.nav-links a {
-  color: rgba(255,255,255,0.85); text-decoration: none;
-  font-size: 0.95rem; font-weight: 400; letter-spacing: 0.5px;
-  position: relative; padding: 4px 0; transition: var(--transition);
-}
-
-.nav.scrolled .nav-links a { color: var(--dark-700); }
-.nav-links a:hover { color: var(--white); }
-.nav.scrolled .nav-links a:hover { color: var(--primary); }
-
-.nav-links a::after {
-  content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
-  height: 2px; background: var(--accent); transform: scaleX(0);
-  transition: transform 0.3s ease; border-radius: 1px;
-}
-
-.nav-links a:hover::after { transform: scaleX(1); }
-
-.nav-cta {
-  padding: 10px 28px !important; border-radius: 24px !important;
-  background: var(--primary) !important; color: var(--white) !important;
-  font-weight: 500 !important; border: none;
-  transition: var(--transition) !important;
-}
-
-.nav.scrolled .nav-cta { background: var(--primary) !important; color: var(--white) !important; }
-.nav-cta:hover { background: var(--primary-dark) !important; transform: translateY(-1px); box-shadow: 0 4px 15px rgba(26,86,219,0.4); }
-.nav-cta::after { display: none !important; }
-
-/* ==================== HERO SECTION ==================== */
-.hero {
-  position: relative; min-height: 100vh;
-  display: flex; align-items: center;
-  background: var(--gradient-hero);
-  overflow: hidden;
-}
-
-.hero-bg-pattern {
-  position: absolute; inset: 0;
-  background-image:
-    radial-gradient(circle at 20% 50%, rgba(59,130,246,0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(249,115,22,0.1) 0%, transparent 40%),
-    radial-gradient(circle at 60% 80%, rgba(59,130,246,0.1) 0%, transparent 40%);
-}
-
-.hero-grid {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 80px 80px;
-}
-
-.hero-particles {
-  position: absolute; inset: 0; pointer-events: none;
-}
-
-.hero-particle {
-  position: absolute; border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  animation: float-particle linear infinite;
-}
-
-@keyframes float-particle {
-  0% { transform: translateY(100vh) scale(0); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
-}
-
-.hero-content {
-  position: relative; z-index: 2;
-  max-width: 1400px; margin: 0 auto; padding: 120px 60px 80px;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-  width: 100%;
-}
-
-.hero-text { max-width: 640px; }
-
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 8px 20px; border-radius: 24px;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.9); font-size: 0.85rem; font-weight: 400;
-  margin-bottom: 32px;
-  animation: fadeInUp 0.8s ease 0.2s both;
-}
-
-.hero-badge-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #22c55e; animation: pulse-dot 2s infinite;
-}
-
-@keyframes pulse-dot {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
-  50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
-}
-
-.hero-title {
-  font-size: 3.8rem; font-weight: 900; color: var(--white);
-  line-height: 1.15; margin-bottom: 24px;
-  animation: fadeInUp 0.8s ease 0.4s both;
-}
-
-.hero-title span {
-  background: linear-gradient(135deg, #60a5fa, #f97316);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-subtitle {
-  font-size: 1.2rem; color: rgba(255,255,255,0.7);
-  line-height: 1.8; margin-bottom: 40px; font-weight: 300;
-  animation: fadeInUp 0.8s ease 0.6s both;
-}
-
-.hero-buttons {
-  display: flex; gap: 16px; flex-wrap: wrap;
-  animation: fadeInUp 0.8s ease 0.8s both;
-}
-
-.btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 14px 36px; border-radius: 12px;
-  font-size: 1rem; font-weight: 500; text-decoration: none;
-  transition: var(--transition); cursor: pointer; border: none;
-  font-family: inherit;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--primary-light));
-  color: var(--white); box-shadow: 0 4px 20px rgba(26,86,219,0.4);
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(26,86,219,0.5); }
-
-.btn-outline {
-  background: transparent; color: var(--white);
-  border: 1.5px solid rgba(255,255,255,0.3);
-}
-.btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
-
-.hero-visual {
-  position: relative; display: flex; justify-content: center; align-items: center;
-  animation: fadeInRight 1s ease 0.5s both;
-}
-
-.hero-card-stack { position: relative; width: 420px; height: 360px; }
-
-.hero-card {
-  position: absolute; border-radius: 20px; padding: 28px;
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.12);
-  transition: var(--transition);
-}
-
-.hero-card-1 {
-  top: 0; left: 0; width: 320px; height: 200px;
-  background: rgba(255,255,255,0.08);
-  animation: hero-float 6s ease-in-out infinite;
-}
-
-.hero-card-2 {
-  top: 60px; left: 140px; width: 280px; height: 180px;
-  background: rgba(59,130,246,0.15);
-  animation: hero-float 6s ease-in-out 2s infinite;
-}
-
-.hero-card-3 {
-  top: 140px; left: 40px; width: 340px; height: 200px;
-  background: rgba(255,255,255,0.06);
-  animation: hero-float 6s ease-in-out 4s infinite;
-}
-
-@keyframes hero-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-.hero-card-icon {
-  width: 48px; height: 48px; border-radius: 12px;
-  background: linear-gradient(135deg, var(--primary-light), var(--accent));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem; margin-bottom: 14px;
-}
-
-.hero-card-title { color: var(--white); font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; }
-.hero-card-desc { color: rgba(255,255,255,0.6); font-size: 0.85rem; line-height: 1.5; }
-
-.hero-stats-row {
-  position: absolute; bottom: -10px; left: -20px; right: -20px;
-  display: flex; gap: 12px;
-}
-
-.hero-stat-mini {
-  flex: 1; padding: 16px 14px; border-radius: 14px;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255,255,255,0.1);
-  text-align: center;
-}
-
-.hero-stat-mini-num {
-  font-size: 1.4rem; font-weight: 800; color: var(--accent);
-  display: block;
-}
-
-.hero-stat-mini-label {
-  font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-top: 4px;
-  display: block;
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInRight {
-  from { opacity: 0; transform: translateX(40px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-/* ==================== SCROLL ANIMATIONS ==================== */
-.reveal {
-  opacity: 0; transform: translateY(40px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-.reveal-delay-5 { transition-delay: 0.5s; }
-
-/* ==================== SECTION COMMON ==================== */
-.section { padding: 100px 60px; position: relative; }
-.section-header { text-align: center; margin-bottom: 64px; }
-.section-label {
-  display: inline-block; font-size: 0.8rem; font-weight: 600;
-  color: var(--primary); text-transform: uppercase; letter-spacing: 3px;
-  margin-bottom: 16px;
-}
-.section-title {
-  font-size: 2.6rem; font-weight: 800; color: var(--dark);
-  margin-bottom: 16px; line-height: 1.3;
-}
-.section-desc {
-  font-size: 1.05rem; color: var(--gray-500); max-width: 600px;
-  margin: 0 auto; line-height: 1.8;
-}
-.container { max-width: 1280px; margin: 0 auto; }
-
-/* ==================== ABOUT SECTION ==================== */
-.about { background: var(--gray-100); }
-
-.about-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-}
-
-.about-content h3 {
-  font-size: 2.2rem; font-weight: 800; margin-bottom: 20px; color: var(--dark);
-}
-
-.about-content p {
-  color: var(--gray-500); line-height: 2; margin-bottom: 16px; font-size: 1rem;
-}
-
-.about-stats {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-}
-
-.stat-card {
-  background: var(--white); border-radius: var(--radius);
-  padding: 32px 28px; text-align: center;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition); position: relative; overflow: hidden;
-}
-
-.stat-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0;
-  height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent));
-  transform: scaleX(0); transition: transform 0.4s ease;
-  transform-origin: left;
-}
-
-.stat-card:hover::before { transform: scaleX(1); }
-.stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-
-.stat-number {
-  font-size: 2.8rem; font-weight: 900; color: var(--primary);
-  line-height: 1; margin-bottom: 8px;
-}
-
-.stat-number span { color: var(--accent); font-size: 1.4rem; }
-
-.stat-label {
-  font-size: 0.9rem; color: var(--gray-500); font-weight: 400;
-}
-
-/* ==================== PRODUCTS SECTION ==================== */
-.products { background: var(--white); }
-
-.product-showcase {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
-}
-
-.product-visual {
-  position: relative; border-radius: 20px; overflow: hidden;
-  background: linear-gradient(135deg, #0f172a, #1e3a5f);
-  padding: 48px; min-height: 400px;
-}
-
-.product-visual-grid {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(59,130,246,0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-.product-visual-content { position: relative; z-index: 1; }
-
-.product-visual-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 6px 14px; border-radius: 20px;
-  background: rgba(59,130,246,0.2); color: #60a5fa;
-  font-size: 0.8rem; margin-bottom: 20px;
-}
-
-.product-visual h3 {
-  color: var(--white); font-size: 1.8rem; font-weight: 700; margin-bottom: 16px;
-}
-
-.product-visual p {
-  color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 24px;
-}
-
-.product-features {
-  display: flex; flex-direction: column; gap: 12px;
-}
-
-.product-feature-item {
-  display: flex; align-items: center; gap: 10px;
-  color: rgba(255,255,255,0.8); font-size: 0.9rem;
-}
-
-.product-feature-dot {
-  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
-}
-
-.product-info h3 {
-  font-size: 2rem; font-weight: 800; color: var(--dark); margin-bottom: 16px;
-}
-
-.product-info > p {
-  color: var(--gray-500); line-height: 1.9; margin-bottom: 32px;
-}
-
-.product-list { display: flex; flex-direction: column; gap: 20px; }
-
-.product-item {
-  display: flex; align-items: flex-start; gap: 16px; padding: 20px;
-  border-radius: 12px; transition: var(--transition);
-}
-
-.product-item:hover { background: var(--gray-100); }
-
-.product-item-icon {
-  width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
-  background: linear-gradient(135deg, rgba(26,86,219,0.1), rgba(59,130,246,0.1));
-  display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-}
-
-.product-item h4 {
-  font-size: 1.05rem; font-weight: 600; color: var(--dark); margin-bottom: 4px;
-}
-
-.product-item p { font-size: 0.9rem; color: var(--gray-500); line-height: 1.6; }
-
-/* ==================== MODULES SECTION ==================== */
-.modules { background: var(--gray-100); }
-
-.modules-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-}
-
-.module-card {
-  background: var(--white); border-radius: var(--radius);
-  padding: 36px 32px; position: relative; overflow: hidden;
-  transition: var(--transition); cursor: default;
-  border: 1px solid transparent;
-}
-
-.module-card:hover {
-  transform: translateY(-6px); box-shadow: var(--shadow-lg);
-  border-color: rgba(26,86,219,0.1);
-}
-
-.module-card::after {
-  content: ''; position: absolute; top: 0; left: 0; right: 0;
-  height: 3px; background: linear-gradient(90deg, var(--primary), var(--primary-light));
-  transform: scaleX(0); transition: transform 0.4s ease; transform-origin: left;
-}
-
-.module-card:hover::after { transform: scaleX(1); }
-
-.module-icon {
-  width: 56px; height: 56px; border-radius: 14px;
-  background: linear-gradient(135deg, rgba(26,86,219,0.08), rgba(59,130,246,0.12));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem; margin-bottom: 20px;
-  transition: var(--transition);
-}
-
-.module-card:hover .module-icon {
-  background: linear-gradient(135deg, var(--primary), var(--primary-light));
-  transform: scale(1.05);
-}
-
-.module-card:hover .module-icon svg { stroke: white; }
-
-.module-card h4 {
-  font-size: 1.15rem; font-weight: 700; color: var(--dark); margin-bottom: 10px;
-}
-
-.module-card p {
-  font-size: 0.9rem; color: var(--gray-500); line-height: 1.7;
-}
-
-/* ==================== AI SECTION ==================== */
-.ai-section {
-  background: var(--dark);
-  position: relative; overflow: hidden;
-}
-
-.ai-section .section-title { color: var(--white); }
-.ai-section .section-desc { color: rgba(255,255,255,0.5); }
-.ai-section .section-label { color: var(--accent); }
-
-.ai-bg-glow {
-  position: absolute; width: 600px; height: 600px; border-radius: 50%;
-  filter: blur(120px); opacity: 0.15;
-}
-.ai-bg-glow-1 { top: -200px; right: -100px; background: var(--primary); }
-.ai-bg-glow-2 { bottom: -200px; left: -100px; background: var(--accent); }
-
-.ai-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
-  position: relative; z-index: 1;
-}
-
-.ai-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: var(--radius); padding: 32px 28px;
-  transition: var(--transition); position: relative; overflow: hidden;
-}
-
-.ai-card:hover {
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(59,130,246,0.3);
-  transform: translateY(-4px);
-}
-
-.ai-card-icon {
-  width: 60px; height: 60px; border-radius: 16px;
-  background: linear-gradient(135deg, rgba(249,115,22,0.2), rgba(249,115,22,0.05));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem; margin-bottom: 20px;
-}
-
-.ai-card h4 {
-  color: var(--white); font-size: 1.1rem; font-weight: 600; margin-bottom: 10px;
-}
-
-.ai-card p {
-  color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.7;
-}
-
-.ai-card-tag {
-  display: inline-block; margin-top: 16px; padding: 4px 12px;
-  border-radius: 20px; background: rgba(59,130,246,0.15);
-  color: #60a5fa; font-size: 0.75rem;
-}
-
-/* ==================== SOLUTIONS SECTION ==================== */
-.solutions { background: var(--white); }
-
-.solutions-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
-}
-
-.solution-card {
-  position: relative; border-radius: var(--radius); overflow: hidden;
-  min-height: 320px; display: flex; align-items: flex-end;
-  transition: var(--transition); cursor: pointer;
-}
-
-.solution-card:hover { transform: translateY(-6px); }
-
-.solution-bg {
-  position: absolute; inset: 0;
-  background-size: cover; background-position: center;
-  transition: transform 0.6s ease;
-}
-
-.solution-card:hover .solution-bg { transform: scale(1.05); }
-
-.solution-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.85) 100%);
-}
-
-.solution-content {
-  position: relative; z-index: 1; padding: 32px;
-  width: 100%;
-}
-
-.solution-tag {
-  display: inline-block; padding: 4px 12px; border-radius: 6px;
-  background: rgba(249,115,22,0.9); color: var(--white);
-  font-size: 0.75rem; font-weight: 600; margin-bottom: 12px;
-}
-
-.solution-content h4 {
-  color: var(--white); font-size: 1.3rem; font-weight: 700; margin-bottom: 8px;
-}
-
-.solution-content p {
-  color: rgba(255,255,255,0.7); font-size: 0.88rem; line-height: 1.6;
-}
-
-.solution-arrow {
-  position: absolute; top: 20px; right: 20px; z-index: 2;
-  width: 40px; height: 40px; border-radius: 50%;
-  background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--white); font-size: 1.1rem;
-  transition: var(--transition);
-}
-
-.solution-card:hover .solution-arrow {
-  background: var(--accent); transform: translate(4px, -4px);
-}
-
-/* ==================== CASES SECTION ==================== */
-.cases { background: var(--gray-100); }
-
-.cases-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
-}
-
-.case-card {
-  background: var(--white); border-radius: var(--radius); overflow: hidden;
-  transition: var(--transition);
-}
-
-.case-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-
-.case-image {
-  height: 200px; position: relative; overflow: hidden;
-}
-
-.case-image-bg {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.case-card:hover .case-image-bg { transform: scale(1.05); }
-
-.case-image-gradient {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(26,86,219,0.7), rgba(59,130,246,0.5));
-  display: flex; align-items: center; justify-content: center;
-}
-
-.case-image-text {
-  color: var(--white); font-size: 2rem; font-weight: 900;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-
-.case-body { padding: 28px; }
-
-.case-body h4 {
-  font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 10px;
-}
-
-.case-body p {
-  font-size: 0.9rem; color: var(--gray-500); line-height: 1.7; margin-bottom: 16px;
-}
-
-.case-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-
-.case-tag {
-  padding: 4px 12px; border-radius: 6px;
-  background: rgba(26,86,219,0.08); color: var(--primary);
-  font-size: 0.78rem; font-weight: 500;
-}
-
-/* ==================== NEWS SECTION ==================== */
-.news { background: var(--white); }
-
-.news-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
-}
-
-.news-card {
-  border-radius: var(--radius); overflow: hidden;
-  transition: var(--transition); background: var(--white);
-  border: 1px solid var(--gray-200);
-}
-
-.news-card:hover {
-  transform: translateY(-4px); box-shadow: var(--shadow-md);
-  border-color: transparent;
-}
-
-.news-thumb {
-  height: 160px; overflow: hidden; position: relative;
-}
-
-.news-thumb-bg {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.news-card:hover .news-thumb-bg { transform: scale(1.08); }
-
-.news-date {
-  position: absolute; top: 12px; left: 12px;
-  background: var(--primary); color: var(--white);
-  padding: 6px 12px; border-radius: 8px;
-  font-size: 0.75rem; font-weight: 600;
-}
-
-.news-body { padding: 20px; }
-
-.news-body h4 {
-  font-size: 1rem; font-weight: 600; color: var(--dark);
-  margin-bottom: 8px; line-height: 1.5;
-  display: -webkit-box; -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical; overflow: hidden;
-}
-
-.news-body p {
-  font-size: 0.85rem; color: var(--gray-500); line-height: 1.6;
-  display: -webkit-box; -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical; overflow: hidden;
-}
-
-/* ==================== CTA SECTION ==================== */
-.cta-section {
-  padding: 100px 60px;
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #1a56db 100%);
-  position: relative; overflow: hidden; text-align: center;
-}
-
-.cta-section::before {
-  content: ''; position: absolute; inset: 0;
-  background-image:
-    radial-gradient(circle at 30% 50%, rgba(249,115,22,0.12) 0%, transparent 50%),
-    radial-gradient(circle at 70% 30%, rgba(59,130,246,0.15) 0%, transparent 50%);
-}
-
-.cta-content { position: relative; z-index: 1; }
-
-.cta-section h2 {
-  font-size: 2.8rem; font-weight: 800; color: var(--white); margin-bottom: 16px;
-}
-
-.cta-section p {
-  font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-bottom: 40px;
-}
-
-.cta-buttons { display: flex; gap: 16px; justify-content: center; }
-
-/* ==================== FOOTER ==================== */
-.footer {
-  background: #080e1a; padding: 64px 60px 32px;
-}
-
-.footer-grid {
-  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr; gap: 40px;
-  margin-bottom: 48px;
-}
-
-.footer-brand h3 {
-  color: var(--white); font-size: 1.4rem; font-weight: 800; margin-bottom: 16px;
-  display: flex; align-items: center; gap: 10px;
-}
-
-.footer-brand p {
-  color: rgba(255,255,255,0.4); font-size: 0.9rem; line-height: 1.8;
-  max-width: 300px;
-}
-
-.footer-col h5 {
-  color: var(--white); font-size: 0.95rem; font-weight: 600; margin-bottom: 20px;
-}
-
-.footer-col ul { list-style: none; }
-
-.footer-col li { margin-bottom: 10px; }
-
-.footer-col a {
-  color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.88rem;
-  transition: var(--transition);
-}
-
-.footer-col a:hover { color: var(--primary-light); }
-
-.footer-contact-item {
-  display: flex; align-items: center; gap: 10px;
-  color: rgba(255,255,255,0.4); font-size: 0.88rem; margin-bottom: 12px;
-}
-
-.footer-contact-item svg { flex-shrink: 0; }
-
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding-top: 24px; text-align: center;
-}
-
-.footer-bottom p {
-  color: rgba(255,255,255,0.3); font-size: 0.82rem;
-}
-
-/* ==================== BACK TO TOP ==================== */
-.back-to-top {
-  position: fixed; bottom: 32px; right: 32px; z-index: 999;
-  width: 48px; height: 48px; border-radius: 14px;
-  background: var(--primary); color: var(--white);
-  border: none; cursor: pointer; font-size: 1.2rem;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 20px rgba(26,86,219,0.4);
-  opacity: 0; transform: translateY(20px);
-  transition: var(--transition);
-}
-
-.back-to-top.visible { opacity: 1; transform: translateY(0); }
-.back-to-top:hover { transform: translateY(-2px); background: var(--primary-dark); }
-
-/* ==================== RESPONSIVE ==================== */
-@media (max-width: 1024px) {
-  .section { padding: 80px 32px; }
-  .nav { padding: 0 32px; }
-  .hero-content { grid-template-columns: 1fr; gap: 60px; padding: 120px 32px 80px; }
-  .hero-visual { display: none; }
-  .hero-title { font-size: 2.8rem; }
-  .about-grid { grid-template-columns: 1fr; gap: 48px; }
-  .product-showcase { grid-template-columns: 1fr; }
-  .modules-grid { grid-template-columns: repeat(2, 1fr); }
-  .ai-grid { grid-template-columns: repeat(2, 1fr); }
-  .solutions-grid { grid-template-columns: 1fr; }
-  .cases-grid { grid-template-columns: 1fr 1fr; }
-  .news-grid { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-}
-
-@media (max-width: 640px) {
-  .section { padding: 64px 20px; }
-  .nav { padding: 0 20px; }
-  .nav-links { display: none; }
-  .hero-content { padding: 100px 20px 60px; }
-  .hero-title { font-size: 2rem; }
-  .hero-subtitle { font-size: 1rem; }
-  .section-title { font-size: 1.8rem; }
-  .modules-grid { grid-template-columns: 1fr; }
-  .ai-grid { grid-template-columns: 1fr; }
-  .cases-grid { grid-template-columns: 1fr; }
-  .news-grid { grid-template-columns: 1fr; }
-  .about-stats { grid-template-columns: 1fr 1fr; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .cta-section h2 { font-size: 1.8rem; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#c0392b;
+  --red-dark:#a93226;
+  --red-light:#e74c3c;
+  --dark:#1a1a2e;
+  --dark2:#16213e;
+  --gray-bg:#f5f5f5;
+  --gray-border:#e0e0e0;
+  --text:#333;
+  --text-light:#666;
+  --white:#fff;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;line-height:1.7}
+
+/* ===== TOP BAR ===== */
+.topbar{
+  background:var(--red);color:var(--white);
+  padding:0 60px;height:44px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:0.82rem;
+}
+.topbar-left{display:flex;align-items:center;gap:6px}
+.topbar-left svg{width:14px;height:14px}
+.topbar a{color:var(--white);text-decoration:none;opacity:0.9;transition:opacity 0.2s}
+.topbar a:hover{opacity:1}
+
+/* ===== NAV ===== */
+.nav{
+  background:var(--white);
+  border-bottom:1px solid var(--gray-border);
+  padding:0 60px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 1px 4px rgba(0,0,0,0.06);
+}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-img{
+  width:44px;height:44px;background:var(--red);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--white);font-weight:900;font-size:0.8rem;letter-spacing:1px;
+}
+.nav-logo-text{font-size:1.3rem;font-weight:800;color:var(--dark);letter-spacing:1px}
+.nav-logo-text span{color:var(--red)}
+.nav-links{display:flex;align-items:center;gap:0;list-style:none}
+.nav-links a{
+  display:block;padding:20px 22px;
+  color:var(--text);text-decoration:none;font-size:0.95rem;font-weight:500;
+  transition:all 0.2s;position:relative;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--red)}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:22px;right:22px;height:3px;
+  background:var(--red);transform:scaleX(0);transition:transform 0.3s;border-radius:2px;
+}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-phone{
+  display:flex;align-items:center;gap:8px;
+  color:var(--red);font-weight:700;font-size:1.05rem;
+}
+.nav-phone svg{width:20px;height:20px}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;height:520px;overflow:hidden;
+  display:flex;align-items:center;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(26,54,93,0.92) 0%,rgba(44,95,138,0.85) 40%,rgba(74,144,196,0.8) 70%,rgba(122,181,224,0.75) 100%),
+    repeating-linear-gradient(90deg,rgba(255,255,255,0.06) 0px,rgba(255,255,255,0.06) 2px,transparent 2px,transparent 60px),
+    repeating-linear-gradient(0deg,rgba(255,255,255,0.03) 0px,rgba(255,255,255,0.03) 1px,transparent 1px,transparent 40px),
+    linear-gradient(135deg,#1a365d 0%,#2c5282 30%,#4299e1 70%,#7ab5e0 100%);
+}
+.hero-bg::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:70%;
+  background:
+    linear-gradient(0deg,rgba(26,54,93,0.6) 0%,transparent 100%),
+    repeating-linear-gradient(90deg,rgba(200,220,240,0.12) 0px,rgba(200,220,240,0.12) 40px,transparent 40px,transparent 100px);
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 30% 80%,rgba(255,255,255,0.08) 0%,transparent 50%),
+    radial-gradient(ellipse at 70% 20%,rgba(100,180,240,0.12) 0%,transparent 40%);
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.3) 40%,transparent 70%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  max-width:1280px;margin:0 auto;padding:0 80px;width:100%;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 16px;border-radius:20px;
+  background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);
+  color:rgba(255,255,255,0.9);font-size:0.82rem;margin-bottom:20px;
+  border:1px solid rgba(255,255,255,0.2);
+}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:#2ecc71}
+.hero h1{
+  font-size:3.2rem;font-weight:900;color:var(--white);
+  line-height:1.25;margin-bottom:16px;
+}
+.hero h1 span{color:var(--red-light)}
+.hero-sub{
+  font-size:1.05rem;color:rgba(255,255,255,0.8);
+  max-width:520px;line-height:1.9;font-weight:300;margin-bottom:0;
+}
+
+/* ===== SECTION COMMON ===== */
+.section{padding:80px 60px}
+.section-center{text-align:center}
+.container{max-width:1200px;margin:0 auto}
+.sec-en{font-size:0.78rem;color:var(--red);text-transform:uppercase;letter-spacing:3px;font-weight:600;margin-bottom:8px}
+.sec-title{font-size:2.2rem;font-weight:800;color:var(--dark);margin-bottom:12px}
+.sec-desc{font-size:0.95rem;color:var(--text-light);margin-bottom:48px}
+
+/* ===== ABOUT ===== */
+.about{background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-text h3{font-size:2rem;font-weight:800;margin-bottom:16px;color:var(--dark)}
+.about-text p{color:var(--text-light);line-height:2;font-size:0.95rem;margin-bottom:10px}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.about-stat{
+  text-align:center;padding:28px 16px;border-radius:12px;
+  border:1px solid var(--gray-border);transition:all 0.3s;
+  background:var(--white);
+}
+.about-stat:hover{border-color:var(--red);box-shadow:0 4px 20px rgba(192,57,43,0.1);transform:translateY(-2px)}
+.about-stat-num{font-size:2.4rem;font-weight:900;color:var(--red);line-height:1}
+.about-stat-num small{font-size:1rem;font-weight:600}
+.about-stat-label{font-size:0.85rem;color:var(--text-light);margin-top:6px}
+
+/* ===== PRODUCTS ===== */
+.products{background:var(--gray-bg)}
+.product-header{text-align:center;margin-bottom:48px}
+.product-tabs{display:flex;justify-content:center;gap:24px;margin-top:20px}
+.product-tab{
+  padding:8px 20px;border-radius:20px;font-size:0.88rem;
+  color:var(--text-light);cursor:pointer;transition:all 0.2s;
+  border:1px solid transparent;background:transparent;font-family:inherit;
+}
+.product-tab.active,.product-tab:hover{
+  color:var(--red);border-color:var(--red);background:rgba(192,57,43,0.05);
+}
+.product-showcase{
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;
+  background:var(--white);border-radius:16px;overflow:hidden;
+  box-shadow:0 2px 20px rgba(0,0,0,0.06);
+}
+.product-img{
+  background:linear-gradient(135deg,var(--dark) 0%,var(--dark2) 100%);
+  padding:40px;display:flex;flex-direction:column;justify-content:center;
+  min-height:360px;position:relative;overflow:hidden;
+}
+.product-img::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);
+  background-size:30px 30px;
+}
+.product-img-content{position:relative;z-index:1}
+.product-img-badge{
+  display:inline-block;padding:4px 12px;border-radius:4px;
+  background:rgba(192,57,43,0.9);color:var(--white);
+  font-size:0.75rem;font-weight:600;margin-bottom:16px;
+}
+.product-img h3{color:var(--white);font-size:1.5rem;font-weight:700;margin-bottom:12px}
+.product-img p{color:rgba(255,255,255,0.6);font-size:0.88rem;line-height:1.7;margin-bottom:20px}
+.product-img-list{display:flex;flex-direction:column;gap:10px}
+.product-img-item{
+  display:flex;align-items:center;gap:8px;
+  color:rgba(255,255,255,0.75);font-size:0.85rem;
+}
+.product-img-item::before{
+  content:'';width:5px;height:5px;border-radius:50%;
+  background:var(--red-light);flex-shrink:0;
+}
+.product-info{padding:40px;display:flex;flex-direction:column;justify-content:center}
+.product-info h3{font-size:1.6rem;font-weight:800;margin-bottom:12px;color:var(--dark)}
+.product-info>p{color:var(--text-light);font-size:0.92rem;margin-bottom:28px;line-height:1.8}
+.product-features{display:flex;flex-direction:column;gap:16px}
+.pf-item{display:flex;align-items:flex-start;gap:14px;padding:14px;border-radius:10px;transition:background 0.2s}
+.pf-item:hover{background:var(--gray-bg)}
+.pf-icon{
+  width:44px;height:44px;border-radius:10px;flex-shrink:0;
+  background:rgba(192,57,43,0.08);display:flex;align-items:center;justify-content:center;
+}
+.pf-icon svg{width:22px;height:22px;stroke:var(--red)}
+.pf-item h4{font-size:0.95rem;font-weight:600;color:var(--dark);margin-bottom:2px}
+.pf-item p{font-size:0.82rem;color:var(--text-light);line-height:1.6}
+.apply-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:24px;padding:12px 32px;border-radius:8px;
+  background:var(--red);color:var(--white);font-size:0.92rem;font-weight:600;
+  text-decoration:none;border:none;cursor:pointer;transition:all 0.2s;font-family:inherit;
+}
+.apply-btn:hover{background:var(--red-dark);transform:translateY(-1px);box-shadow:0 4px 15px rgba(192,57,43,0.3)}
+
+/* ===== MODULES ===== */
+.modules{background:var(--white)}
+.modules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.module-card{
+  padding:30px 28px;border-radius:12px;border:1px solid var(--gray-border);
+  transition:all 0.3s;background:var(--white);cursor:default;
+}
+.module-card:hover{border-color:var(--red);box-shadow:0 6px 24px rgba(192,57,43,0.08);transform:translateY(-3px)}
+.module-icon{
+  width:50px;height:50px;border-radius:12px;
+  background:rgba(192,57,43,0.08);display:flex;align-items:center;justify-content:center;
+  margin-bottom:16px;transition:all 0.3s;
+}
+.module-card:hover .module-icon{background:var(--red)}
+.module-icon svg{width:26px;height:26px;stroke:var(--red);transition:stroke 0.3s}
+.module-card:hover .module-icon svg{stroke:var(--white)}
+.module-card h4{font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:8px}
+.module-card p{font-size:0.85rem;color:var(--text-light);line-height:1.7}
+
+/* ===== AI ===== */
+.ai-section{background:var(--dark);padding:80px 60px;position:relative;overflow:hidden}
+.ai-section::before{
+  content:'';position:absolute;top:-200px;right:-200px;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(192,57,43,0.15),transparent 70%);
+}
+.ai-section .sec-en{color:var(--red-light)}
+.ai-section .sec-title{color:var(--white)}
+.ai-section .sec-desc{color:rgba(255,255,255,0.5)}
+.ai-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;z-index:1}
+.ai-card{
+  border-radius:12px;overflow:hidden;
+  transition:all 0.3s;cursor:default;
+}
+.ai-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+.ai-card-img{
+  height:160px;position:relative;overflow:hidden;
+}
+.ai-card-img-bg{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.5s;
+}
+.ai-card:hover .ai-card-img-bg{transform:scale(1.08)}
+.ai-card-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,0.7) 100%);
+}
+.ai-card-body{padding:20px;background:rgba(255,255,255,0.05)}
+.ai-card h4{color:var(--white);font-size:0.95rem;font-weight:600;margin-bottom:8px}
+.ai-card p{color:rgba(255,255,255,0.5);font-size:0.8rem;line-height:1.6}
+.ai-card-tag{
+  display:inline-block;margin-top:12px;padding:3px 10px;border-radius:4px;
+  background:rgba(192,57,43,0.2);color:var(--red-light);font-size:0.72rem;
+}
+
+/* AI card gradient backgrounds */
+.ai-img-1{background:linear-gradient(135deg,#1a365d,#2b6cb0,#4299e1)}
+.ai-img-2{background:linear-gradient(135deg,#1e3a5f,#2c5282,#3182ce)}
+.ai-img-3{background:linear-gradient(135deg,#0c4a6e,#0369a1,#0ea5e9)}
+.ai-img-4{background:linear-gradient(135deg,#1e293b,#334155,#475569)}
+
+/* ===== SOLUTIONS ===== */
+.solutions{background:var(--gray-bg)}
+.solutions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.solution-card{
+  position:relative;border-radius:14px;overflow:hidden;
+  min-height:300px;display:flex;align-items:flex-end;
+  transition:all 0.3s;cursor:pointer;
+}
+.solution-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,0.15)}
+.solution-bg{
+  position:absolute;inset:0;
+  transition:transform 0.5s;
+}
+.solution-card:hover .solution-bg{transform:scale(1.05)}
+.solution-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 20%,rgba(0,0,0,0.75) 100%);
+}
+.solution-content{position:relative;z-index:1;padding:28px;width:100%}
+.solution-tag{
+  display:inline-block;padding:3px 10px;border-radius:4px;
+  background:var(--red);color:var(--white);font-size:0.72rem;font-weight:600;
+  margin-bottom:10px;
+}
+.solution-content h4{color:var(--white);font-size:1.15rem;font-weight:700;margin-bottom:6px}
+.solution-content p{color:rgba(255,255,255,0.7);font-size:0.85rem;line-height:1.6}
+
+/* ===== CASES ===== */
+.cases{background:var(--white)}
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.case-card{
+  border-radius:12px;overflow:hidden;
+  border:1px solid var(--gray-border);transition:all 0.3s;background:var(--white);
+}
+.case-card:hover{box-shadow:0 8px 30px rgba(0,0,0,0.1);transform:translateY(-3px);border-color:transparent}
+.case-img{height:180px;position:relative;overflow:hidden}
+.case-img-bg{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.5s;
+}
+.case-card:hover .case-img-bg{transform:scale(1.05)}
+.case-img-gradient{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.case-img-text{color:var(--white);font-size:1.6rem;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,0.3)}
+.case-body{padding:24px}
+.case-body h4{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:8px}
+.case-body p{font-size:0.85rem;color:var(--text-light);line-height:1.7;margin-bottom:12px}
+.case-tags{display:flex;gap:8px;flex-wrap:wrap}
+.case-tag{
+  padding:3px 10px;border-radius:4px;
+  background:rgba(192,57,43,0.08);color:var(--red);font-size:0.75rem;font-weight:500;
+}
+
+/* ===== NEWS ===== */
+.news{background:var(--gray-bg)}
+.news-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px}
+.news-tabs{display:flex;gap:0}
+.news-tab{
+  padding:8px 20px;font-size:0.9rem;color:var(--text-light);
+  cursor:pointer;border:none;background:transparent;font-family:inherit;
+  border-bottom:2px solid transparent;transition:all 0.2s;
+}
+.news-tab.active{color:var(--red);border-bottom-color:var(--red);font-weight:600}
+.news-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.news-card{
+  border-radius:10px;overflow:hidden;background:var(--white);
+  border:1px solid var(--gray-border);transition:all 0.3s;
+}
+.news-card:hover{box-shadow:0 6px 20px rgba(0,0,0,0.08);transform:translateY(-2px);border-color:transparent}
+.news-thumb{height:140px;position:relative;overflow:hidden}
+.news-thumb-bg{width:100%;height:100%;transition:transform 0.4s}
+.news-card:hover .news-thumb-bg{transform:scale(1.06)}
+.news-date{
+  position:absolute;top:10px;left:10px;
+  background:var(--red);color:var(--white);
+  width:36px;height:36px;border-radius:8px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-weight:700;line-height:1;
+}
+.news-date small{font-size:0.55rem;font-weight:400;opacity:0.8}
+.news-body{padding:16px}
+.news-body h4{
+  font-size:0.9rem;font-weight:600;color:var(--dark);
+  margin-bottom:6px;line-height:1.5;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.news-body p{
+  font-size:0.8rem;color:var(--text-light);line-height:1.6;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+
+/* ===== FOOTER ===== */
+.footer{background:#1a1a2e;padding:56px 60px 28px;color:rgba(255,255,255,0.6)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1.5fr;gap:36px;margin-bottom:40px}
+.footer-brand h3{
+  color:var(--white);font-size:1.2rem;font-weight:800;margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.footer-brand-icon{
+  width:32px;height:32px;background:var(--red);border-radius:6px;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:0.7rem;font-weight:900;color:var(--white);
+}
+.footer-brand p{font-size:0.85rem;line-height:1.8;max-width:280px}
+.footer-col h5{color:var(--white);font-size:0.9rem;font-weight:600;margin-bottom:16px}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:8px}
+.footer-col a{color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;transition:color 0.2s}
+.footer-col a:hover{color:var(--red-light)}
+.footer-contact{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem}
+.footer-contact svg{flex-shrink:0;width:14px;height:14px}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;text-align:center;
+  font-size:0.78rem;
+}
+
+/* ===== BACK TO TOP ===== */
+.btt{
+  position:fixed;bottom:28px;right:28px;z-index:999;
+  width:44px;height:44px;border-radius:10px;
+  background:var(--red);color:var(--white);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 15px rgba(192,57,43,0.4);
+  opacity:0;transform:translateY(16px);transition:all 0.3s;
+}
+.btt.show{opacity:1;transform:translateY(0)}
+.btt:hover{background:var(--red-dark);transform:translateY(-2px)}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(30px);transition:all 0.7s cubic-bezier(0.4,0,0.2,1)}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:0.1s}.reveal-d2{transition-delay:0.2s}
+.reveal-d3{transition-delay:0.3s}.reveal-d4{transition-delay:0.4s}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .section{padding:64px 28px}
+  .topbar,.nav{padding:0 28px}
+  .hero-content{padding:0 40px}
+  .about-grid,.product-showcase{grid-template-columns:1fr}
+  .modules-grid{grid-template-columns:repeat(2,1fr)}
+  .ai-grid{grid-template-columns:repeat(2,1fr)}
+  .solutions-grid,.cases-grid{grid-template-columns:1fr 1fr}
+  .news-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .topbar{display:none}
+  .nav{padding:0 16px;height:56px}
+  .nav-links{display:none}
+  .hero{height:auto;padding:60px 0}
+  .hero-content{padding:0 24px}
+  .hero h1{font-size:2rem}
+  .section{padding:48px 16px}
+  .sec-title{font-size:1.6rem}
+  .modules-grid,.ai-grid,.cases-grid,.news-grid{grid-template-columns:1fr}
+  .solutions-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<!-- ==================== NAVIGATION ==================== -->
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    江西省南昌市高新技术产业开发区
+  </div>
+  <a href="tel:4008888888">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;vertical-align:middle;margin-right:4px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    400-888-8888
+  </a>
+</div>
+
+<!-- NAV -->
 <nav class="nav" id="nav">
   <a href="#" class="nav-logo">
-    <div class="nav-logo-icon">TY</div>
-    通友科技
+    <div class="nav-logo-img">TOYOU</div>
+    <div class="nav-logo-text">TOYOU<span>通友</span></div>
   </a>
   <ul class="nav-links">
-    <li><a href="#about">关于我们</a></li>
+    <li><a href="#about" class="active">关于通友</a></li>
     <li><a href="#products">产品中心</a></li>
     <li><a href="#modules">核心功能</a></li>
     <li><a href="#ai">AI赋能</a></li>
     <li><a href="#solutions">解决方案</a></li>
     <li><a href="#cases">成功案例</a></li>
     <li><a href="#news">新闻资讯</a></li>
-    <li><a href="#contact" class="nav-cta">联系我们</a></li>
   </ul>
+  <div class="nav-phone">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    400-888-8888
+  </div>
 </nav>
 
-<!-- ==================== HERO ==================== -->
+<!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-bg-pattern"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-particles" id="particles"></div>
-
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-text">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        国资数字化解决方案领导者
-      </div>
-      <h1 class="hero-title">
-        十年深耕<br><span>国资保障</span>
-      </h1>
-      <p class="hero-subtitle">
-        服务于500+国有企业，1000+政府机构，以数字化技术赋能政企数字化转型，构建智慧国资管理体系。
-      </p>
-      <div class="hero-buttons">
-        <a href="#products" class="btn btn-primary">
-          探索产品
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#about" class="btn btn-outline">了解更多</a>
-      </div>
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      国资数字化解决方案领导者
     </div>
-
-    <div class="hero-visual">
-      <div class="hero-card-stack">
-        <div class="hero-card hero-card-1">
-          <div class="hero-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          </div>
-          <div class="hero-card-title">统一数据平台</div>
-          <div class="hero-card-desc">多源数据汇聚，打破信息孤岛</div>
-        </div>
-        <div class="hero-card hero-card-2">
-          <div class="hero-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          </div>
-          <div class="hero-card-title">国资监管系统</div>
-          <div class="hero-card-desc">全流程智能化监管，风险预警</div>
-        </div>
-        <div class="hero-card hero-card-3">
-          <div class="hero-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          </div>
-          <div class="hero-card-title">智能决策引擎</div>
-          <div class="hero-card-desc">AI驱动数据分析，辅助科学决策</div>
-        </div>
-        <div class="hero-stats-row">
-          <div class="hero-stat-mini">
-            <span class="hero-stat-mini-num" data-count="500">0</span>
-            <span class="hero-stat-mini-label">服务国企</span>
-          </div>
-          <div class="hero-stat-mini">
-            <span class="hero-stat-mini-num" data-count="1000">0</span>
-            <span class="hero-stat-mini-label">政府机构</span>
-          </div>
-          <div class="hero-stat-mini">
-            <span class="hero-stat-mini-num" data-count="3000">0</span>
-            <span class="hero-stat-mini-label">项目经验</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h1>十年深耕<br><span>国资保障</span></h1>
+    <p class="hero-sub">服务于500+国有企业，1000+政府机构，以数字化技术赋能政企数字化转型，构建智慧国资管理体系。</p>
   </div>
 </section>
 
-<!-- ==================== ABOUT ==================== -->
+<!-- ABOUT -->
 <section class="section about" id="about">
   <div class="container">
     <div class="about-grid">
-      <div class="about-content reveal">
-        <div class="section-label">About Tongyou</div>
+      <div class="about-text reveal">
+        <div class="sec-en">About Tongyou</div>
         <h3>通友简介</h3>
-        <p>
-          江西通友科技有限公司成立于2014年，是一家专注于国资监管数字化解决方案的高新技术企业。公司致力于为国有企业和政府机构提供全方位的数字化转型服务。
-        </p>
-        <p>
-          我们以自主研发的核心技术为基础，结合人工智能、大数据、云计算等前沿技术，打造了覆盖国资监管、企业管理、数据分析等全场景的数字化解决方案。
-        </p>
+        <p>江西通友科技有限公司成立于2014年，是一家专注于国资监管数字化解决方案的高新技术企业。公司致力于为国有企业和政府机构提供全方位的数字化转型服务。</p>
+        <p>我们以自主研发的核心技术为基础，结合人工智能、大数据、云计算等前沿技术，打造了覆盖国资监管、企业管理、数据分析等全场景的数字化解决方案。</p>
       </div>
       <div class="about-stats">
-        <div class="stat-card reveal reveal-delay-1">
-          <div class="stat-number"><span data-target="2014">0</span><span>年</span></div>
-          <div class="stat-label">成立时间</div>
+        <div class="about-stat reveal reveal-d1">
+          <div class="about-stat-num"><span data-target="2014">0</span><small>年</small></div>
+          <div class="about-stat-label">成立时间</div>
         </div>
-        <div class="stat-card reveal reveal-delay-2">
-          <div class="stat-number"><span data-target="3000">0</span><span>+</span></div>
-          <div class="stat-label">项目经验</div>
+        <div class="about-stat reveal reveal-d2">
+          <div class="about-stat-num"><span data-target="3000">0</span><small>+</small></div>
+          <div class="about-stat-label">项目经验</div>
         </div>
-        <div class="stat-card reveal reveal-delay-3">
-          <div class="stat-number"><span data-target="100">0</span><span>+</span></div>
-          <div class="stat-label">技术人员</div>
+        <div class="about-stat reveal reveal-d3">
+          <div class="about-stat-num"><span data-target="100">0</span><small>+</small></div>
+          <div class="about-stat-label">技术人员</div>
         </div>
-        <div class="stat-card reveal reveal-delay-4">
-          <div class="stat-number"><span data-target="60">0</span><span>+</span></div>
-          <div class="stat-label">核心技术</div>
+        <div class="about-stat reveal reveal-d4">
+          <div class="about-stat-num"><span data-target="60">0</span><small>+</small></div>
+          <div class="about-stat-label">核心技术</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== PRODUCTS ==================== -->
+<!-- PRODUCTS -->
 <section class="section products" id="products">
   <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">Product Center</div>
-      <h2 class="section-title">产品中心</h2>
-      <p class="section-desc">自主研发 30+ 项专利产品，专注政企数字化核心业务</p>
+    <div class="product-header reveal">
+      <div class="sec-en">Product Center</div>
+      <h2 class="sec-title">产品中心</h2>
+      <p class="sec-desc">自主研发 30+ 项专利产品，专注政企数字化核心业务</p>
+      <div class="product-tabs">
+        <button class="product-tab active">通友国资云</button>
+        <button class="product-tab">通友数智云</button>
+        <button class="product-tab">通友大数据</button>
+      </div>
     </div>
 
-    <div class="product-showcase">
-      <div class="product-visual reveal">
-        <div class="product-visual-grid"></div>
-        <div class="product-visual-content">
-          <div class="product-visual-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            核心产品
-          </div>
+    <div class="product-showcase reveal">
+      <div class="product-img">
+        <div class="product-img-content">
+          <div class="product-img-badge">核心产品</div>
           <h3>通友国资云</h3>
           <p>面向国资监管和国企管理的一站式数字化云平台，提供从数据采集、治理到分析决策的全链路服务。</p>
-          <div class="product-features">
-            <div class="product-feature-item">
-              <span class="product-feature-dot"></span>
-              多层级国资监管与风险预警
-            </div>
-            <div class="product-feature-item">
-              <span class="product-feature-dot"></span>
-              国有资产全生命周期管理
-            </div>
-            <div class="product-feature-item">
-              <span class="product-feature-dot"></span>
-              智能化数据分析与决策支持
-            </div>
-            <div class="product-feature-item">
-              <span class="product-feature-dot"></span>
-              企业经营数据实时监控
-            </div>
+          <div class="product-img-list">
+            <div class="product-img-item">多层级国资监管与风险预警</div>
+            <div class="product-img-item">国有资产全生命周期管理</div>
+            <div class="product-img-item">智能化数据分析与决策支持</div>
+            <div class="product-img-item">企业经营数据实时监控</div>
           </div>
         </div>
       </div>
-
-      <div class="product-info reveal reveal-delay-2">
+      <div class="product-info">
         <h3>全面的数字化解决方案</h3>
         <p>覆盖国资监管、企业管理、数据分析等多个场景，助力政企数字化转型升级。</p>
-        <div class="product-list">
-          <div class="product-item">
-            <div class="product-item-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-            </div>
-            <div>
-              <h4>国资监管平台</h4>
-              <p>实时监控国有资产运营状况，智能预警风险，确保国有资产保值增值。</p>
-            </div>
+        <div class="product-features">
+          <div class="pf-item">
+            <div class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <div><h4>国资监管平台</h4><p>实时监控国有资产运营状况，智能预警风险</p></div>
           </div>
-          <div class="product-item">
-            <div class="product-item-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
-            </div>
-            <div>
-              <h4>数据分析中心</h4>
-              <p>多维度数据可视化展示，支持自定义报表与智能分析，辅助科学决策。</p>
-            </div>
+          <div class="pf-item">
+            <div class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></div>
+            <div><h4>数据分析中心</h4><p>多维度数据可视化，辅助科学决策</p></div>
           </div>
-          <div class="product-item">
-            <div class="product-item-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>
-            </div>
-            <div>
-              <h4>智慧办公系统</h4>
-              <p>流程自动化、协同办公、知识管理，全面提升组织运营效率。</p>
-            </div>
+          <div class="pf-item">
+            <div class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg></div>
+            <div><h4>智慧办公系统</h4><p>流程自动化、协同办公，提升运营效率</p></div>
           </div>
         </div>
+        <button class="apply-btn">申请体验 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== CORE MODULES ==================== -->
+<!-- CORE MODULES -->
 <section class="section modules" id="modules">
   <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">Core Modules</div>
-      <h2 class="section-title">核心功能模块</h2>
-      <p class="section-desc">自主研发 30+ 项专利产品，专注政企数字化核心业务</p>
+    <div class="section-center reveal">
+      <div class="sec-en">Core Modules</div>
+      <h2 class="sec-title">核心功能模块</h2>
+      <p class="sec-desc">自主研发 30+ 项专利产品，专注政企数字化核心业务</p>
     </div>
-
     <div class="modules-grid">
-      <div class="module-card reveal reveal-delay-1">
-        <div class="module-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        </div>
+      <div class="module-card reveal reveal-d1">
+        <div class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
         <h4>统一门户平台</h4>
         <p>融合"一站式"工作台、多系统统一入口、个性化展示、消息推送，实现千人千面的智慧门户体验。</p>
       </div>
-
-      <div class="module-card reveal reveal-delay-2">
-        <div class="module-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="2"><path d="M2 20h20M5 20V8l7-5 7 5v12"/><path d="M9 20v-6h6v6"/></svg>
-        </div>
+      <div class="module-card reveal reveal-d2">
+        <div class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M2 20h20M5 20V8l7-5 7 5v12"/><path d="M9 20v-6h6v6"/></svg></div>
         <h4>工程建设管理</h4>
         <p>从项目立项、招标采购、合同管理到竣工验收的全流程数字化管理，实现工程项目透明化管控。</p>
       </div>
-
-      <div class="module-card reveal reveal-delay-3">
-        <div class="module-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        </div>
+      <div class="module-card reveal reveal-d3">
+        <div class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
         <h4>投融管退</h4>
         <p>投资决策、融资管理、投后运营、退出评估全生命周期管理，支持多层级穿透式股权管理。</p>
       </div>
-
-      <div class="module-card reveal reveal-delay-1">
-        <div class="module-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        </div>
+      <div class="module-card reveal reveal-d1">
+        <div class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
         <h4>资产管理</h4>
         <p>覆盖实物资产、无形资产、金融资产的全生命周期管理，实现资产台账、盘点、处置一体化。</p>
       </div>
-
-      <div class="module-card reveal reveal-delay-2">
-        <div class="module-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
+      <div class="module-card reveal reveal-d2">
+        <div class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <h4>人力资源管理</h4>
         <p>干部管理、薪酬绩效、招聘培训、考勤排班等全流程数字化HR管理解决方案。</p>
       </div>
-
-      <div class="module-card reveal reveal-delay-3">
-        <div class="module-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        </div>
+      <div class="module-card reveal reveal-d3">
+        <div class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
         <h4>AI 智能体</h4>
         <p>内置大语言模型、自动化流程、智能问答、文档解析等AI能力，为业务注入智能化动力。</p>
       </div>
@@ -1124,100 +609,93 @@ body {
   </div>
 </section>
 
-<!-- ==================== AI SECTION ==================== -->
-<section class="section ai-section" id="ai">
-  <div class="ai-bg-glow ai-bg-glow-1"></div>
-  <div class="ai-bg-glow ai-bg-glow-2"></div>
-
+<!-- AI SECTION -->
+<section class="ai-section" id="ai">
   <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">AI Empowerment</div>
-      <h2 class="section-title">AI 赋能智能制造</h2>
-      <p class="section-desc">融合工业AI中台，覆盖设备、质检、生产、工艺四大核心场景，助力制造业降本增效</p>
+    <div class="section-center reveal">
+      <div class="sec-en">AI Empowerment</div>
+      <h2 class="sec-title">AI 赋能智能制造</h2>
+      <p class="sec-desc">融合工业AI中台，覆盖设备、质检、生产、工艺四大核心场景，助力制造业降本增效</p>
     </div>
-
     <div class="ai-grid">
-      <div class="ai-card reveal reveal-delay-1">
-        <div class="ai-card-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4M14 12h4"/></svg>
+      <div class="ai-card reveal reveal-d1">
+        <div class="ai-card-img">
+          <div class="ai-card-img-bg ai-img-1"></div>
+          <div class="ai-card-img-overlay"></div>
         </div>
-        <h4>AI 设备预测性维护</h4>
-        <p>通过传感器数据和机器学习算法，实现设备故障预测与维护计划优化，减少非计划停机时间70%。</p>
-        <span class="ai-card-tag">IoT + ML</span>
+        <div class="ai-card-body">
+          <h4>AI 设备预测性维护</h4>
+          <p>通过传感器数据和机器学习算法，实现设备故障预测与维护计划优化，减少非计划停机时间70%。</p>
+          <span class="ai-card-tag">IoT + ML</span>
+        </div>
       </div>
-
-      <div class="ai-card reveal reveal-delay-2">
-        <div class="ai-card-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <div class="ai-card reveal reveal-d2">
+        <div class="ai-card-img">
+          <div class="ai-card-img-bg ai-img-2"></div>
+          <div class="ai-card-img-overlay"></div>
         </div>
-        <h4>AI 视觉质量检测</h4>
-        <p>基于深度学习的缺陷检测系统，实现高精度、高速度的产品质量自动检测，检测准确率达99.5%。</p>
-        <span class="ai-card-tag">Computer Vision</span>
+        <div class="ai-card-body">
+          <h4>AI 视觉质量检测</h4>
+          <p>基于深度学习的缺陷检测系统，实现高精度、高速度的产品质量自动检测，检测准确率达99.5%。</p>
+          <span class="ai-card-tag">Computer Vision</span>
+        </div>
       </div>
-
-      <div class="ai-card reveal reveal-delay-3">
-        <div class="ai-card-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+      <div class="ai-card reveal reveal-d3">
+        <div class="ai-card-img">
+          <div class="ai-card-img-bg ai-img-3"></div>
+          <div class="ai-card-img-overlay"></div>
         </div>
-        <h4>AI 智能排产优化</h4>
-        <p>利用运筹优化和AI算法，实现生产计划智能排程，提高设备利用率15%，交付周期缩短20%。</p>
-        <span class="ai-card-tag">Optimization</span>
+        <div class="ai-card-body">
+          <h4>AI 智能排产优化</h4>
+          <p>利用运筹优化和AI算法，实现生产计划智能排程，提高设备利用率15%，交付周期缩短20%。</p>
+          <span class="ai-card-tag">Optimization</span>
+        </div>
       </div>
-
-      <div class="ai-card reveal reveal-delay-4">
-        <div class="ai-card-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <div class="ai-card reveal reveal-d4">
+        <div class="ai-card-img">
+          <div class="ai-card-img-bg ai-img-4"></div>
+          <div class="ai-card-img-overlay"></div>
         </div>
-        <h4>AI 智能客服</h4>
-        <p>大语言模型驱动的智能客服系统，支持多轮对话、知识问答、工单处理，服务效率提升300%。</p>
-        <span class="ai-card-tag">LLM + RAG</span>
+        <div class="ai-card-body">
+          <h4>AI 工艺参数优化</h4>
+          <p>基于历史数据和实时反馈的智能工艺参数调优系统，提升产品良率，降低能耗和原材料浪费。</p>
+          <span class="ai-card-tag">Deep Learning</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== SOLUTIONS ==================== -->
+<!-- SOLUTIONS -->
 <section class="section solutions" id="solutions">
   <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">Solutions</div>
-      <h2 class="section-title">解决方案</h2>
-      <p class="section-desc">自主研发 30+ 项专利产品，专注政企数字化核心业务</p>
+    <div class="section-center reveal">
+      <div class="sec-en">Solutions</div>
+      <h2 class="sec-title">解决方案</h2>
+      <p class="sec-desc">自主研发 30+ 项专利产品，专注政企数字化核心业务</p>
     </div>
-
     <div class="solutions-grid">
-      <div class="solution-card reveal reveal-delay-1">
-        <div class="solution-bg" style="background: linear-gradient(135deg, #1a3a6e 0%, #0e3baa 100%);"></div>
+      <div class="solution-card reveal reveal-d1">
+        <div class="solution-bg" style="background:linear-gradient(135deg,#1a3a5f,#2c5f8a)"></div>
         <div class="solution-overlay"></div>
-        <div class="solution-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
         <div class="solution-content">
           <span class="solution-tag">Solution</span>
           <h4>国资监管解决方案</h4>
           <p>实现国有资产全口径、全覆盖监管，确保国有资产安全与增值。</p>
         </div>
       </div>
-
-      <div class="solution-card reveal reveal-delay-2">
-        <div class="solution-bg" style="background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);"></div>
+      <div class="solution-card reveal reveal-d2">
+        <div class="solution-bg" style="background:linear-gradient(135deg,#1e3a5f,#2563eb)"></div>
         <div class="solution-overlay"></div>
-        <div class="solution-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
         <div class="solution-content">
           <span class="solution-tag">Solution</span>
           <h4>数字化转型方案</h4>
           <p>端到端的数字化转型咨询与实施服务，助力企业全面数字化升级。</p>
         </div>
       </div>
-
-      <div class="solution-card reveal reveal-delay-3">
-        <div class="solution-bg" style="background: linear-gradient(135deg, #0c4a6e 0%, #0284c7 100%);"></div>
+      <div class="solution-card reveal reveal-d3">
+        <div class="solution-bg" style="background:linear-gradient(135deg,#0c4a6e,#0284c7)"></div>
         <div class="solution-overlay"></div>
-        <div class="solution-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
         <div class="solution-content">
           <span class="solution-tag">Solution</span>
           <h4>智慧企业管控平台</h4>
@@ -1228,114 +706,100 @@ body {
   </div>
 </section>
 
-<!-- ==================== CASES ==================== -->
+<!-- CASES -->
 <section class="section cases" id="cases">
   <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">Success Cases</div>
-      <h2 class="section-title">成功案例</h2>
-      <p class="section-desc">自主研发 30+ 项专利产品，专注政企数字化核心业务</p>
+    <div class="section-center reveal">
+      <div class="sec-en">Success Cases</div>
+      <h2 class="sec-title">成功案例</h2>
+      <p class="sec-desc">自主研发 30+ 项专利产品，专注政企数字化核心业务</p>
     </div>
-
     <div class="cases-grid">
-      <div class="case-card reveal reveal-delay-1">
-        <div class="case-image">
-          <div class="case-image-gradient">
-            <div class="case-image-text">数字化平台</div>
-          </div>
+      <div class="case-card reveal reveal-d1">
+        <div class="case-img">
+          <div class="case-img-bg" style="background:linear-gradient(135deg,#1a365d,#2b6cb0)"></div>
+          <div class="case-img-gradient"><div class="case-img-text">数字化平台</div></div>
         </div>
         <div class="case-body">
           <h4>江西省数字社会服务产业平台</h4>
-          <p>为江西省搭建统一的数字社会服务平台，整合多项政务服务，实现"一网通办"，服务覆盖全省千万级用户。</p>
-          <div class="case-tags">
-            <span class="case-tag">数字政务</span>
-            <span class="case-tag">平台建设</span>
-          </div>
+          <p>为江西省搭建统一的数字社会服务平台，整合多项政务服务，实现"一网通办"。</p>
+          <div class="case-tags"><span class="case-tag">数字政务</span><span class="case-tag">平台建设</span></div>
         </div>
       </div>
-
-      <div class="case-card reveal reveal-delay-2">
-        <div class="case-image">
-          <div class="case-image-gradient" style="background: linear-gradient(135deg, rgba(249,115,22,0.7), rgba(239,68,68,0.5));">
-            <div class="case-image-text">数字化工业园</div>
-          </div>
+      <div class="case-card reveal reveal-d2">
+        <div class="case-img">
+          <div class="case-img-bg" style="background:linear-gradient(135deg,#7c2d12,#c2410c)"></div>
+          <div class="case-img-gradient"><div class="case-img-text">数字化工厂</div></div>
         </div>
         <div class="case-body">
           <h4>江西铜业集团数字化工厂</h4>
-          <p>打造铜业集团数字化管理体系，涵盖生产监控、设备管理、质量追溯等模块，生产效率提升25%。</p>
-          <div class="case-tags">
-            <span class="case-tag">智能制造</span>
-            <span class="case-tag">工业互联</span>
-          </div>
+          <p>打造铜业集团数字化管理体系，涵盖生产监控、设备管理、质量追溯等模块。</p>
+          <div class="case-tags"><span class="case-tag">智能制造</span><span class="case-tag">工业互联</span></div>
         </div>
       </div>
-
-      <div class="case-card reveal reveal-delay-3">
-        <div class="case-image">
-          <div class="case-image-gradient" style="background: linear-gradient(135deg, rgba(34,197,94,0.7), rgba(16,185,129,0.5));">
-            <div class="case-image-text">国资监管平台</div>
-          </div>
+      <div class="case-card reveal reveal-d3">
+        <div class="case-img">
+          <div class="case-img-bg" style="background:linear-gradient(135deg,#065f46,#059669)"></div>
+          <div class="case-img-gradient"><div class="case-img-text">国资监管平台</div></div>
         </div>
         <div class="case-body">
           <h4>某市国资委综合监管平台</h4>
-          <p>建设覆盖全市国有企业的综合监管平台，实现资产监管、风险预警、绩效评估等全方位数字化管理。</p>
-          <div class="case-tags">
-            <span class="case-tag">国资监管</span>
-            <span class="case-tag">风险预警</span>
-          </div>
+          <p>建设覆盖全市国有企业的综合监管平台，实现资产监管、风险预警等全方位管理。</p>
+          <div class="case-tags"><span class="case-tag">国资监管</span><span class="case-tag">风险预警</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== NEWS ==================== -->
+<!-- NEWS -->
 <section class="section news" id="news">
   <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">News & Updates</div>
-      <h2 class="section-title">新闻资讯</h2>
-      <p class="section-desc">实时关注通友最新动态，了解行业资讯</p>
+    <div class="news-header reveal">
+      <div>
+        <div class="sec-en">News & Updates</div>
+        <h2 class="sec-title">新闻资讯</h2>
+      </div>
+      <div class="news-tabs">
+        <button class="news-tab active">公司新闻</button>
+        <button class="news-tab">行业动态</button>
+      </div>
     </div>
-
     <div class="news-grid">
-      <div class="news-card reveal reveal-delay-1">
+      <div class="news-card reveal reveal-d1">
         <div class="news-thumb">
-          <div class="news-thumb-bg" style="background: linear-gradient(135deg, #1e3a5f, #3b82f6);"></div>
-          <div class="news-date">05</div>
+          <div class="news-thumb-bg" style="background:linear-gradient(135deg,#1e3a5f,#3b82f6)"></div>
+          <div class="news-date"><span>05</span><small>月</small></div>
         </div>
         <div class="news-body">
           <h4>江西通友科技发布全新国资云平台</h4>
           <p>全新升级的国资云平台正式发布，新增多项AI智能功能，助力国有企业数字化转型。</p>
         </div>
       </div>
-
-      <div class="news-card reveal reveal-delay-2">
+      <div class="news-card reveal reveal-d2">
         <div class="news-thumb">
-          <div class="news-thumb-bg" style="background: linear-gradient(135deg, #f97316, #ef4444);"></div>
-          <div class="news-date">04</div>
+          <div class="news-thumb-bg" style="background:linear-gradient(135deg,#7c2d12,#ea580c)"></div>
+          <div class="news-date"><span>04</span><small>月</small></div>
         </div>
         <div class="news-body">
           <h4>通友科技荣获数字化转型优秀服务商</h4>
-          <p>在2026年度数字化转型峰会上，通友科技凭借卓越的技术实力荣获优秀服务商称号。</p>
+          <p>在2026年度数字化转型峰会上，通友科技凭借卓越技术实力荣获优秀服务商称号。</p>
         </div>
       </div>
-
-      <div class="news-card reveal reveal-delay-3">
+      <div class="news-card reveal reveal-d3">
         <div class="news-thumb">
-          <div class="news-thumb-bg" style="background: linear-gradient(135deg, #10b981, #059669);"></div>
-          <div class="news-date">03</div>
+          <div class="news-thumb-bg" style="background:linear-gradient(135deg,#065f46,#10b981)"></div>
+          <div class="news-date"><span>03</span><small>月</small></div>
         </div>
         <div class="news-body">
           <h4>通友科技与某省国资委达成战略合作</h4>
           <p>双方将在国资监管数字化领域展开深度合作，共同推动国有资产智能化管理。</p>
         </div>
       </div>
-
-      <div class="news-card reveal reveal-delay-4">
+      <div class="news-card reveal reveal-d4">
         <div class="news-thumb">
-          <div class="news-thumb-bg" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);"></div>
-          <div class="news-date">02</div>
+          <div class="news-thumb-bg" style="background:linear-gradient(135deg,#4c1d95,#7c3aed)"></div>
+          <div class="news-date"><span>02</span><small>月</small></div>
         </div>
         <div class="news-body">
           <h4>AI赋能国企管理创新论坛成功举办</h4>
@@ -1346,33 +810,14 @@ body {
   </div>
 </section>
 
-<!-- ==================== CTA ==================== -->
-<section class="cta-section" id="contact">
-  <div class="cta-content reveal">
-    <h2>开启您的数字化转型之旅</h2>
-    <p>专业团队为您量身定制数字化解决方案</p>
-    <div class="cta-buttons">
-      <a href="#" class="btn btn-primary" style="background: var(--accent); box-shadow: 0 4px 20px rgba(249,115,22,0.4);">
-        申请体验
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="#" class="btn btn-outline">联系我们</a>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== FOOTER ==================== -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <h3>
-          <span style="display:inline-flex;width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#3b82f6,#f97316);align-items:center;justify-content:center;font-size:0.9rem;font-weight:900;color:white;">TY</span>
-          通友科技
-        </h3>
+        <h3><span class="footer-brand-icon">TY</span> 通友科技</h3>
         <p>专注国资数字化解决方案，以技术创新驱动政企数字化转型升级。</p>
       </div>
-
       <div class="footer-col">
         <h5>产品中心</h5>
         <ul>
@@ -1382,7 +827,6 @@ body {
           <li><a href="#">智慧办公系统</a></li>
         </ul>
       </div>
-
       <div class="footer-col">
         <h5>解决方案</h5>
         <ul>
@@ -1392,7 +836,6 @@ body {
           <li><a href="#">AI赋能方案</a></li>
         </ul>
       </div>
-
       <div class="footer-col">
         <h5>关于我们</h5>
         <ul>
@@ -1402,133 +845,75 @@ body {
           <li><a href="#">加入我们</a></li>
         </ul>
       </div>
-
       <div class="footer-col">
         <h5>联系方式</h5>
-        <div class="footer-contact-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div class="footer-contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           江西省南昌市
         </div>
-        <div class="footer-contact-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div class="footer-contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           400-888-8888
         </div>
-        <div class="footer-contact-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div class="footer-contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           contact@tongyou.com
         </div>
       </div>
     </div>
-
     <div class="footer-bottom">
-      <p>&copy; 2014-2026 江西通友科技有限公司 版权所有 &nbsp;|&nbsp; 赣ICP备XXXXXXXX号</p>
+      <p>&copy; 2014-2026 江西通友科技有限公司 版权所有 | 赣ICP备XXXXXXXX号</p>
     </div>
   </div>
 </footer>
 
-<!-- ==================== BACK TO TOP ==================== -->
-<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+<!-- BACK TO TOP -->
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
 </button>
 
-<!-- ==================== JAVASCRIPT ==================== -->
 <script>
-// ===== Particles =====
-(function() {
-  const container = document.getElementById('particles');
-  for (let i = 0; i < 30; i++) {
-    const p = document.createElement('div');
-    p.className = 'hero-particle';
-    const size = Math.random() * 4 + 2;
-    p.style.width = size + 'px';
-    p.style.height = size + 'px';
-    p.style.left = Math.random() * 100 + '%';
-    p.style.animationDuration = (Math.random() * 15 + 10) + 's';
-    p.style.animationDelay = (Math.random() * 15) + 's';
-    container.appendChild(p);
-  }
-})();
+// Scroll reveal
+const reveals=document.querySelectorAll('.reveal');
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:0.12,rootMargin:'0px 0px -30px 0px'});
+reveals.forEach(e=>ro.observe(e));
 
-// ===== Navigation scroll =====
-const nav = document.getElementById('nav');
-const backToTop = document.getElementById('backToTop');
-
-window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY > 80;
-  nav.classList.toggle('scrolled', scrolled);
-  backToTop.classList.toggle('visible', window.scrollY > 400);
-});
-
-// ===== Scroll reveal =====
-const revealElements = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
-revealElements.forEach(el => revealObserver.observe(el));
-
-// ===== Counter animation =====
-function animateCounter(el) {
-  const target = parseInt(el.getAttribute('data-target') || el.getAttribute('data-count'));
-  if (!target || el.dataset.animated) return;
-  el.dataset.animated = '1';
-
-  const duration = 2000;
-  const start = performance.now();
-
-  function update(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(target * eased).toLocaleString();
-    if (progress < 1) requestAnimationFrame(update);
-  }
-  requestAnimationFrame(update);
+// Counter
+function animC(el){
+  const t=+el.dataset.target;if(!t||el.dataset.done)return;el.dataset.done='1';
+  const d=1800,s=performance.now();
+  function u(n){const p=Math.min((n-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(t*e).toLocaleString();if(p<1)requestAnimationFrame(u)}
+  requestAnimationFrame(u);
 }
+const counters=document.querySelectorAll('[data-target]');
+const co=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)animC(e.target)})},{threshold:0.5});
+counters.forEach(e=>co.observe(e));
 
-const counters = document.querySelectorAll('[data-target], [data-count]');
-const counterObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateCounter(entry.target);
-    }
-  });
-}, { threshold: 0.5 });
+// Nav scroll
+const nav=document.getElementById('nav'),btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  btt.classList.toggle('show',window.scrollY>400);
+});
 
-counters.forEach(el => counterObserver.observe(el));
-
-// ===== Smooth anchor scroll =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
+// Anchor scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
     e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      const offset = nav.offsetHeight + 20;
-      const top = target.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){const o=nav.offsetHeight+10;window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-o,behavior:'smooth'})}
   });
 });
 
-// ===== Active nav highlight =====
-const sections = document.querySelectorAll('section[id]');
-window.addEventListener('scroll', () => {
-  const scrollPos = window.scrollY + 150;
-  sections.forEach(section => {
-    const top = section.offsetTop;
-    const height = section.offsetHeight;
-    const id = section.getAttribute('id');
-    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
-    if (link) {
-      link.style.opacity = (scrollPos >= top && scrollPos < top + height) ? '1' : '';
-    }
+// Active nav
+const secs=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY+120;
+  secs.forEach(s=>{
+    const top=s.offsetTop,h=s.offsetHeight,id=s.getAttribute('id');
+    const link=document.querySelector(`.nav-links a[href="#${id}"]`);
+    if(link){link.classList.toggle('active',y>=top&&y<top+h)}
   });
 });
 </script>
-
 </body>
 </html>
