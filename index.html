@@ -274,11 +274,6 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
   width:100%;height:100%;object-fit:cover;
   transition:transform 0.5s;
 }
-.ai-card:hover .ai-card-img-bg{transform:scale(1.08)}
-.ai-card-img-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,0.7) 100%);
-}
 .ai-card-body{padding:20px;background:rgba(255,255,255,0.05)}
 .ai-card h4{color:var(--white);font-size:0.95rem;font-weight:600;margin-bottom:8px}
 .ai-card p{color:rgba(255,255,255,0.5);font-size:0.8rem;line-height:1.6}
@@ -287,11 +282,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
   background:rgba(192,57,43,0.2);color:var(--red-light);font-size:0.72rem;
 }
 
-/* AI card gradient backgrounds */
-.ai-img-1{background:linear-gradient(135deg,#1a365d,#2b6cb0,#4299e1)}
-.ai-img-2{background:linear-gradient(135deg,#1e3a5f,#2c5282,#3182ce)}
-.ai-img-3{background:linear-gradient(135deg,#0c4a6e,#0369a1,#0ea5e9)}
-.ai-img-4{background:linear-gradient(135deg,#1e293b,#334155,#475569)}
+/* AI card images handled by img tags */
 
 /* ===== SOLUTIONS ===== */
 .solutions{background:var(--gray-bg)}
@@ -304,7 +295,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
 .solution-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,0.15)}
 .solution-bg{
   position:absolute;inset:0;
-  transition:transform 0.5s;
+  transition:transform 0.5s;object-fit:cover;width:100%;height:100%;
 }
 .solution-card:hover .solution-bg{transform:scale(1.05)}
 .solution-overlay{
@@ -365,7 +356,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
 }
 .news-card:hover{box-shadow:0 6px 20px rgba(0,0,0,0.08);transform:translateY(-2px);border-color:transparent}
 .news-thumb{height:140px;position:relative;overflow:hidden}
-.news-thumb-bg{width:100%;height:100%;transition:transform 0.4s}
+.news-thumb-bg{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
 .news-card:hover .news-thumb-bg{transform:scale(1.06)}
 .news-date{
   position:absolute;top:10px;left:10px;
@@ -630,7 +621,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
     <div class="ai-grid">
       <div class="ai-card reveal reveal-d1">
         <div class="ai-card-img">
-          <div class="ai-card-img-bg ai-img-1"></div>
+          <img class="ai-card-img-bg" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop" alt="AI设备预测性维护">
           <div class="ai-card-img-overlay"></div>
         </div>
         <div class="ai-card-body">
@@ -641,7 +632,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
       </div>
       <div class="ai-card reveal reveal-d2">
         <div class="ai-card-img">
-          <div class="ai-card-img-bg ai-img-2"></div>
+          <img class="ai-card-img-bg" src="https://images.unsplash.com/photo-1563986768609-322da13575f2?w=600&h=400&fit=crop" alt="AI视觉质量检测">
           <div class="ai-card-img-overlay"></div>
         </div>
         <div class="ai-card-body">
@@ -652,7 +643,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
       </div>
       <div class="ai-card reveal reveal-d3">
         <div class="ai-card-img">
-          <div class="ai-card-img-bg ai-img-3"></div>
+          <img class="ai-card-img-bg" src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=600&h=400&fit=crop" alt="AI智能排产优化">
           <div class="ai-card-img-overlay"></div>
         </div>
         <div class="ai-card-body">
@@ -663,7 +654,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
       </div>
       <div class="ai-card reveal reveal-d4">
         <div class="ai-card-img">
-          <div class="ai-card-img-bg ai-img-4"></div>
+          <img class="ai-card-img-bg" src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop" alt="AI工艺参数优化">
           <div class="ai-card-img-overlay"></div>
         </div>
         <div class="ai-card-body">
@@ -686,7 +677,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
     </div>
     <div class="solutions-grid">
       <div class="solution-card reveal reveal-d1">
-        <div class="solution-bg" style="background:linear-gradient(135deg,#1a3a5f,#2c5f8a)"></div>
+        <img class="solution-bg" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=500&fit=crop" alt="国资监管解决方案">
         <div class="solution-overlay"></div>
         <div class="solution-content">
           <span class="solution-tag">Solution</span>
@@ -695,7 +686,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
         </div>
       </div>
       <div class="solution-card reveal reveal-d2">
-        <div class="solution-bg" style="background:linear-gradient(135deg,#1e3a5f,#2563eb)"></div>
+        <img class="solution-bg" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=500&fit=crop" alt="数字化转型方案">
         <div class="solution-overlay"></div>
         <div class="solution-content">
           <span class="solution-tag">Solution</span>
@@ -704,7 +695,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
         </div>
       </div>
       <div class="solution-card reveal reveal-d3">
-        <div class="solution-bg" style="background:linear-gradient(135deg,#0c4a6e,#0284c7)"></div>
+        <img class="solution-bg" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=500&fit=crop" alt="智慧企业管控平台">
         <div class="solution-overlay"></div>
         <div class="solution-content">
           <span class="solution-tag">Solution</span>
@@ -727,7 +718,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
     <div class="cases-grid">
       <div class="case-card reveal reveal-d1">
         <div class="case-img">
-          <div class="case-img-bg" style="background:linear-gradient(135deg,#1a365d,#2b6cb0)"></div>
+          <img class="case-img-bg" src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&h=360&fit=crop" alt="江西省数字社会服务产业平台">
           <div class="case-img-gradient"><div class="case-img-text">数字化平台</div></div>
         </div>
         <div class="case-body">
@@ -738,7 +729,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
       </div>
       <div class="case-card reveal reveal-d2">
         <div class="case-img">
-          <div class="case-img-bg" style="background:linear-gradient(135deg,#7c2d12,#c2410c)"></div>
+          <img class="case-img-bg" src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&h=360&fit=crop" alt="江西铜业集团数字化工厂">
           <div class="case-img-gradient"><div class="case-img-text">数字化工厂</div></div>
         </div>
         <div class="case-body">
@@ -749,7 +740,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
       </div>
       <div class="case-card reveal reveal-d3">
         <div class="case-img">
-          <div class="case-img-bg" style="background:linear-gradient(135deg,#065f46,#059669)"></div>
+          <img class="case-img-bg" src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600&h=360&fit=crop" alt="某市国资委综合监管平台">
           <div class="case-img-gradient"><div class="case-img-text">国资监管平台</div></div>
         </div>
         <div class="case-body">
@@ -778,7 +769,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
     <div class="news-grid">
       <div class="news-card reveal reveal-d1">
         <div class="news-thumb">
-          <div class="news-thumb-bg" style="background:linear-gradient(135deg,#1e3a5f,#3b82f6)"></div>
+          <img class="news-thumb-bg" src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=280&fit=crop" alt="国资云平台发布">
           <div class="news-date"><span>05</span><small>月</small></div>
         </div>
         <div class="news-body">
@@ -788,7 +779,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
       </div>
       <div class="news-card reveal reveal-d2">
         <div class="news-thumb">
-          <div class="news-thumb-bg" style="background:linear-gradient(135deg,#7c2d12,#ea580c)"></div>
+          <img class="news-thumb-bg" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=280&fit=crop" alt="数字化转型峰会">
           <div class="news-date"><span>04</span><small>月</small></div>
         </div>
         <div class="news-body">
@@ -798,7 +789,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
       </div>
       <div class="news-card reveal reveal-d3">
         <div class="news-thumb">
-          <div class="news-thumb-bg" style="background:linear-gradient(135deg,#065f46,#10b981)"></div>
+          <img class="news-thumb-bg" src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&h=280&fit=crop" alt="战略合作签约">
           <div class="news-date"><span>03</span><small>月</small></div>
         </div>
         <div class="news-body">
@@ -808,7 +799,7 @@ body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;color:var
       </div>
       <div class="news-card reveal reveal-d4">
         <div class="news-thumb">
-          <div class="news-thumb-bg" style="background:linear-gradient(135deg,#4c1d95,#7c3aed)"></div>
+          <img class="news-thumb-bg" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=280&fit=crop" alt="AI创新论坛">
           <div class="news-date"><span>02</span><small>月</small></div>
         </div>
         <div class="news-body">
