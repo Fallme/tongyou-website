@@ -40,8 +40,20 @@
 
 <section class="section">
   <div class="container">
-    <div class="card-grid-2">
-      <a href="product-cloud.html" class="card reveal" style="text-decoration:none;color:inherit">
+    <div class="news-page-header reveal">
+      <div></div>
+      <div class="news-tabs">
+        <button class="product-tab active" data-filter="all">全部产品</button>
+        <button class="product-tab" data-filter="cloud">云平台</button>
+        <button class="product-tab" data-filter="manage">管理系统</button>
+        <button class="product-tab" data-filter="data">数据分析</button>
+        <button class="product-tab" data-filter="office">办公协作</button>
+      </div>
+    </div>
+
+    <div class="card-grid-2" id="product-list">
+      <!-- 云平台 -->
+      <a href="product-cloud.html" class="card reveal" data-cat="cloud" style="text-decoration:none;color:inherit">
         <div class="card-img">
           <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=360&fit=crop" alt="通友云平台">
         </div>
@@ -53,7 +65,9 @@
           </div>
         </div>
       </a>
-      <a href="product-management.html" class="card reveal reveal-d1" style="text-decoration:none;color:inherit">
+
+      <!-- 管理系统 -->
+      <a href="product-management.html" class="card reveal reveal-d1" data-cat="manage" style="text-decoration:none;color:inherit">
         <div class="card-img">
           <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=360&fit=crop" alt="企业管理平台">
         </div>
@@ -65,7 +79,9 @@
           </div>
         </div>
       </a>
-      <a href="product-data.html" class="card reveal reveal-d2" style="text-decoration:none;color:inherit">
+
+      <!-- 数据分析 -->
+      <a href="product-data.html" class="card reveal reveal-d2" data-cat="data" style="text-decoration:none;color:inherit">
         <div class="card-img">
           <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=360&fit=crop" alt="数据分析中心">
         </div>
@@ -77,7 +93,9 @@
           </div>
         </div>
       </a>
-      <a href="product-office.html" class="card reveal reveal-d3" style="text-decoration:none;color:inherit">
+
+      <!-- 办公协作 -->
+      <a href="product-office.html" class="card reveal reveal-d3" data-cat="office" style="text-decoration:none;color:inherit">
         <div class="card-img">
           <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&h=360&fit=crop" alt="智慧办公系统">
         </div>
@@ -90,6 +108,42 @@
         </div>
       </a>
     </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--gray-bg)">
+  <div class="container">
+    <div class="section-center reveal">
+      <div class="sec-en">Why Choose Us</div>
+      <h2 class="sec-title">为什么选择通友产品</h2>
+      <p class="sec-desc">10年行业深耕，30+项技术专利，服务500+企业客户</p>
+    </div>
+    <div class="card-grid-4">
+      <div class="about-stat reveal">
+        <div class="about-stat-num"><span data-target="500">0</span><small>+</small></div>
+        <div class="about-stat-label">企业客户</div>
+      </div>
+      <div class="about-stat reveal reveal-d1">
+        <div class="about-stat-num"><span data-target="30">0</span><small>+</small></div>
+        <div class="about-stat-label">技术专利</div>
+      </div>
+      <div class="about-stat reveal reveal-d2">
+        <div class="about-stat-num">99.9<small>%</small></div>
+        <div class="about-stat-label">系统可用性</div>
+      </div>
+      <div class="about-stat reveal reveal-d3">
+        <div class="about-stat-num"><span data-target="7">0</span><small>x24h</small></div>
+        <div class="about-stat-label">技术支持</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="detail-cta">
+  <div class="container">
+    <h3 class="reveal">寻找适合您的数字化产品</h3>
+    <p class="reveal">专业顾问为您提供一对一产品选型与方案咨询</p>
+    <a href="#" class="apply-btn reveal">立即咨询 &rarr;</a>
   </div>
 </section>
 
@@ -131,7 +185,21 @@
 <button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
 </button>
-
 <script src="base.js"></script>
+<script>
+// Product tab filtering
+document.addEventListener('click',function(e){
+  var tab=e.target.closest('.product-tab');
+  if(!tab)return;
+  var group=tab.parentElement;
+  group.querySelectorAll('.product-tab').forEach(function(t){t.classList.remove('active')});
+  tab.classList.add('active');
+  var f=tab.dataset.filter;
+  document.querySelectorAll('#product-list .card').forEach(function(c){
+    if(f==='all'||c.dataset.cat===f){c.style.display='';c.classList.add('vis')}
+    else{c.style.display='none'}
+  });
+});
+</script>
 </body>
 </html>
