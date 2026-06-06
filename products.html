@@ -5,6 +5,88 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>产品中心 - 通友科技</title>
 <link rel="stylesheet" href="base.css">
+<style>
+/* ===== 产品中心专属样式 ===== */
+.prod-tabs{display:flex;justify-content:center;gap:0;margin-bottom:0}
+.prod-tab{
+  padding:12px 28px;font-size:0.95rem;color:var(--text-light);
+  cursor:pointer;border:none;background:transparent;font-family:inherit;
+  border-bottom:2px solid transparent;transition:all 0.2s;font-weight:500;
+}
+.prod-tab.active{color:var(--red);border-bottom-color:var(--red);font-weight:700}
+.prod-tab:hover{color:var(--red)}
+
+.prod-panel{display:none}
+.prod-panel.active{display:block}
+
+/* 产品展示区块 */
+.prod-showcase{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border-radius:16px;overflow:hidden;min-height:480px;
+}
+.prod-showcase-left{
+  background:linear-gradient(135deg,var(--dark) 0%,var(--dark2) 100%);
+  padding:48px;display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.prod-showcase-left::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+  background-size:30px 30px;
+}
+.prod-showcase-left>*{position:relative;z-index:1}
+.prod-badge{
+  display:inline-block;padding:4px 14px;border-radius:6px;
+  background:rgba(211,47,47,0.9);color:#fff;font-size:0.78rem;font-weight:600;
+  margin-bottom:20px;width:fit-content;
+}
+.prod-showcase-left h2{color:#fff;font-size:1.8rem;font-weight:800;margin-bottom:16px}
+.prod-showcase-left p{color:rgba(255,255,255,0.75);line-height:1.9;margin-bottom:24px;font-size:0.92rem}
+.prod-showcase-left ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.prod-showcase-left li{
+  display:flex;align-items:center;gap:10px;
+  color:rgba(255,255,255,0.85);font-size:0.88rem;
+}
+.prod-showcase-left li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red-light);flex-shrink:0}
+.prod-showcase-left .apply-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 28px;border-radius:8px;
+  background:var(--red);color:#fff;font-size:0.92rem;font-weight:600;
+  text-decoration:none;border:none;cursor:pointer;transition:all 0.2s;width:fit-content;
+}
+.prod-showcase-left .apply-btn:hover{background:var(--red-dark);transform:translateY(-2px)}
+
+.prod-showcase-right{
+  background:#fff;padding:48px;display:flex;flex-direction:column;justify-content:center;
+  border:1px solid var(--gray-border);border-left:none;border-radius:0 16px 16px 0;
+}
+.prod-showcase-right h3{font-size:1.4rem;font-weight:800;color:var(--dark);margin-bottom:8px}
+.prod-showcase-right>p{font-size:0.9rem;color:var(--text-light);margin-bottom:28px;line-height:1.7}
+.prod-item-list{display:flex;flex-direction:column;gap:16px}
+.prod-item{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:16px;border-radius:12px;transition:all 0.3s;cursor:pointer;text-decoration:none;color:inherit;
+}
+.prod-item:hover{background:rgba(211,47,47,0.04)}
+.prod-item-icon{
+  width:48px;height:48px;border-radius:12px;flex-shrink:0;
+  background:rgba(211,47,47,0.08);display:flex;align-items:center;justify-content:center;
+}
+.prod-item-icon svg{width:24px;height:24px;stroke:var(--red)}
+.prod-item h4{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:4px}
+.prod-item p{font-size:0.82rem;color:var(--text-light);line-height:1.6}
+
+@media(max-width:900px){
+  .prod-showcase{grid-template-columns:1fr}
+  .prod-showcase-right{border-radius:0 0 16px 16px;border-left:1px solid var(--gray-border);border-top:none}
+}
+@media(max-width:640px){
+  .prod-tabs{flex-wrap:wrap}
+  .prod-tab{padding:10px 16px;font-size:0.85rem}
+  .prod-showcase-left,.prod-showcase-right{padding:28px 20px}
+}
+</style>
 </head>
 <body>
 
@@ -34,79 +116,124 @@
   <div class="container" style="position:relative;z-index:1">
     <div class="sec-en">Products</div>
     <h1 class="sec-title">产品中心</h1>
-    <p class="sec-desc">自主研发 30+ 项专利产品，专注政企数字化核心业务</p>
+    <p class="sec-desc">自主研发数字化核心产品，专注政企数字化升级</p>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <div class="news-page-header reveal">
-      <div></div>
-      <div class="news-tabs">
-        <button class="product-tab active" data-filter="all">全部产品</button>
-        <button class="product-tab" data-filter="cloud">云平台</button>
-        <button class="product-tab" data-filter="manage">管理系统</button>
-        <button class="product-tab" data-filter="data">数据分析</button>
-        <button class="product-tab" data-filter="office">办公协作</button>
+    <div class="prod-tabs reveal">
+      <button class="prod-tab active" data-panel="p1">通友云平台</button>
+      <button class="prod-tab" data-panel="p2">通友数智云</button>
+      <button class="prod-tab" data-panel="p3">通友大数据</button>
+    </div>
+
+    <!-- 通友云平台 -->
+    <div class="prod-panel active" id="p1">
+      <div class="prod-showcase reveal">
+        <div class="prod-showcase-left">
+          <div class="prod-badge">核心产品</div>
+          <h2>通友云平台</h2>
+          <p>面向企业管理和数字化运营的一站式数字化云平台，提供从数据采集、治理到分析决策的全链路服务。</p>
+          <ul>
+            <li>多层级企业管理与风险预警</li>
+            <li>企业资产全生命周期管理</li>
+            <li>智能化数据分析与决策支持</li>
+            <li>企业经营数据实时监控</li>
+          </ul>
+          <a href="product-cloud.html" class="apply-btn">了解详情 &rarr;</a>
+        </div>
+        <div class="prod-showcase-right">
+          <h3>全面的数字化解决方案</h3>
+          <p>覆盖企业管理、数据分析、智能决策等多个场景，助力政企数字化转型升级。</p>
+          <div class="prod-item-list">
+            <a href="product-management.html" class="prod-item">
+              <div class="prod-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+              <div><h4>企业管理平台</h4><p>实时监控企业运营状况，智能预警风险</p></div>
+            </a>
+            <a href="product-data.html" class="prod-item">
+              <div class="prod-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+              <div><h4>数据分析中心</h4><p>多维度数据可视化，辅助科学决策</p></div>
+            </a>
+            <a href="product-office.html" class="prod-item">
+              <div class="prod-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+              <div><h4>智慧办公系统</h4><p>流程自动化、协同办公，提升运营效率</p></div>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="card-grid-2" id="product-list">
-      <!-- 云平台 -->
-      <a href="product-cloud.html" class="card reveal" data-cat="cloud" style="text-decoration:none;color:inherit">
-        <div class="card-img">
-          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=360&fit=crop" alt="通友云平台">
+    <!-- 通友数智云 -->
+    <div class="prod-panel" id="p2">
+      <div class="prod-showcase reveal">
+        <div class="prod-showcase-left" style="background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%)">
+          <div class="prod-badge">智能化产品</div>
+          <h2>通友数智云</h2>
+          <p>基于AI和大数据技术的智能决策平台，为企业提供智能分析、风险预测、经营优化等能力。</p>
+          <ul>
+            <li>AI驱动的智能决策引擎</li>
+            <li>实时风险预测与预警</li>
+            <li>智能经营分析与优化建议</li>
+            <li>自然语言交互式数据分析</li>
+          </ul>
+          <a href="product-smartcloud.html" class="apply-btn">了解详情 &rarr;</a>
         </div>
-        <div class="card-body">
-          <h4>通友云平台</h4>
-          <p>面向企业管理和数字化运营的一站式数字化云平台，提供从数据采集、治理到分析决策的全链路服务。</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-            <span class="job-tag">数据采集</span><span class="job-tag">治理分析</span><span class="job-tag">决策支持</span>
+        <div class="prod-showcase-right">
+          <h3>AI赋能企业决策</h3>
+          <p>融合大语言模型与行业知识图谱，让每个决策都有数据支撑。</p>
+          <div class="prod-item-list">
+            <div class="prod-item">
+              <div class="prod-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+              <div><h4>智能预测</h4><p>基于机器学习的销量、资金、风险预测</p></div>
+            </div>
+            <div class="prod-item">
+              <div class="prod-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+              <div><h4>对话式分析</h4><p>用自然语言提问，AI自动返回数据洞察</p></div>
+            </div>
+            <div class="prod-item">
+              <div class="prod-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div><h4>风险管控</h4><p>实时监控经营风险，智能生成应对方案</p></div>
+            </div>
           </div>
         </div>
-      </a>
+      </div>
+    </div>
 
-      <!-- 管理系统 -->
-      <a href="product-management.html" class="card reveal reveal-d1" data-cat="manage" style="text-decoration:none;color:inherit">
-        <div class="card-img">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=360&fit=crop" alt="企业管理平台">
+    <!-- 通友大数据 -->
+    <div class="prod-panel" id="p3">
+      <div class="prod-showcase reveal">
+        <div class="prod-showcase-left" style="background:linear-gradient(135deg,#0c1222 0%,#1a2744 100%)">
+          <div class="prod-badge">数据产品</div>
+          <h2>通友大数据</h2>
+          <p>企业级大数据平台，提供海量数据的采集、存储、计算、分析全栈能力，驱动数据资产化。</p>
+          <ul>
+            <li>PB级海量数据处理能力</li>
+            <li>实时+离线双引擎计算</li>
+            <li>数据资产目录与血缘管理</li>
+            <li>自助式数据探索与分析</li>
+          </ul>
+          <a href="product-bigdata.html" class="apply-btn">了解详情 &rarr;</a>
         </div>
-        <div class="card-body">
-          <h4>企业管理平台</h4>
-          <p>实时监控企业运营状况，智能预警风险，实现企业资产全生命周期管理。</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-            <span class="job-tag">实时监控</span><span class="job-tag">风险预警</span><span class="job-tag">资产管理</span>
+        <div class="prod-showcase-right">
+          <h3>释放数据价值</h3>
+          <p>从数据采集到价值变现，构建企业级数据中台，让数据真正成为生产要素。</p>
+          <div class="prod-item-list">
+            <div class="prod-item">
+              <div class="prod-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+              <div><h4>数据中台</h4><p>统一数据标准，构建企业级数据资产</p></div>
+            </div>
+            <div class="prod-item">
+              <div class="prod-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+              <div><h4>实时计算</h4><p>毫秒级数据处理，支撑实时业务决策</p></div>
+            </div>
+            <div class="prod-item">
+              <div class="prod-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+              <div><h4>可视化分析</h4><p>拖拽式分析，零代码生成数据报告</p></div>
+            </div>
           </div>
         </div>
-      </a>
-
-      <!-- 数据分析 -->
-      <a href="product-data.html" class="card reveal reveal-d2" data-cat="data" style="text-decoration:none;color:inherit">
-        <div class="card-img">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=360&fit=crop" alt="数据分析中心">
-        </div>
-        <div class="card-body">
-          <h4>数据分析中心</h4>
-          <p>强大的数据分析引擎，支持多维度数据挖掘、可视化报表和智能预测。</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-            <span class="job-tag">数据挖掘</span><span class="job-tag">可视化</span><span class="job-tag">智能预测</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- 办公协作 -->
-      <a href="product-office.html" class="card reveal reveal-d3" data-cat="office" style="text-decoration:none;color:inherit">
-        <div class="card-img">
-          <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&h=360&fit=crop" alt="智慧办公系统">
-        </div>
-        <div class="card-body">
-          <h4>智慧办公系统</h4>
-          <p>集成OA、协同办公、流程审批于一体的智慧办公解决方案，提升组织效率。</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-            <span class="job-tag">OA协同</span><span class="job-tag">流程审批</span><span class="job-tag">效率提升</span>
-          </div>
-        </div>
-      </a>
+      </div>
     </div>
   </div>
 </section>
@@ -115,26 +242,14 @@
   <div class="container">
     <div class="section-center reveal">
       <div class="sec-en">Why Choose Us</div>
-      <h2 class="sec-title">为什么选择通友产品</h2>
-      <p class="sec-desc">10年行业深耕，30+项技术专利，服务500+企业客户</p>
+      <h2 class="sec-title">为什么选择通友</h2>
+      <p class="sec-desc">10年行业深耕，服务500+企业客户</p>
     </div>
     <div class="card-grid-4">
-      <div class="about-stat reveal">
-        <div class="about-stat-num"><span data-target="500">0</span><small>+</small></div>
-        <div class="about-stat-label">企业客户</div>
-      </div>
-      <div class="about-stat reveal reveal-d1">
-        <div class="about-stat-num"><span data-target="30">0</span><small>+</small></div>
-        <div class="about-stat-label">技术专利</div>
-      </div>
-      <div class="about-stat reveal reveal-d2">
-        <div class="about-stat-num">99.9<small>%</small></div>
-        <div class="about-stat-label">系统可用性</div>
-      </div>
-      <div class="about-stat reveal reveal-d3">
-        <div class="about-stat-num"><span data-target="7">0</span><small>x24h</small></div>
-        <div class="about-stat-label">技术支持</div>
-      </div>
+      <div class="about-stat reveal"><div class="about-stat-num"><span data-target="500">0</span><small>+</small></div><div class="about-stat-label">企业客户</div></div>
+      <div class="about-stat reveal reveal-d1"><div class="about-stat-num"><span data-target="30">0</span><small>+</small></div><div class="about-stat-label">技术专利</div></div>
+      <div class="about-stat reveal reveal-d2"><div class="about-stat-num">99.9<small>%</small></div><div class="about-stat-label">系统可用性</div></div>
+      <div class="about-stat reveal reveal-d3"><div class="about-stat-num">7<small>x24h</small></div><div class="about-stat-label">技术支持</div></div>
     </div>
   </div>
 </section>
@@ -150,55 +265,28 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand">
-        <h3><span class="footer-brand-icon">TY</span> 通友科技</h3>
-        <p>专注企业数字化解决方案，以技术创新驱动政企数字化转型升级。</p>
-      </div>
-      <div class="footer-col"><h5>产品中心</h5><ul>
-        <li><a href="product-cloud.html">通友云平台</a></li>
-        <li><a href="product-management.html">企业管理平台</a></li>
-        <li><a href="product-data.html">数据分析中心</a></li>
-        <li><a href="product-office.html">智慧办公系统</a></li>
-      </ul></div>
-      <div class="footer-col"><h5>解决方案</h5><ul>
-        <li><a href="solution-management.html">企业管理方案</a></li>
-        <li><a href="solution-digital.html">数字化转型</a></li>
-        <li><a href="solution-smart.html">智慧管控平台</a></li>
-        <li><a href="solution-ai.html">AI赋能方案</a></li>
-      </ul></div>
-      <div class="footer-col"><h5>关于我们</h5><ul>
-        <li><a href="about.html">公司简介</a></li>
-        <li><a href="about-team.html">团队介绍</a></li>
-        <li><a href="news.html">新闻资讯</a></li>
-        <li><a href="about-careers.html">加入我们</a></li>
-      </ul></div>
-      <div class="footer-col"><h5>联系方式</h5>
-        <div class="footer-contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>江西省南昌市</div>
-        <div class="footer-contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>400-888-8888</div>
-        <div class="footer-contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contact@tongyou.com</div>
-      </div>
+      <div class="footer-brand"><h3><span class="footer-brand-icon">TY</span> 通友科技</h3><p>专注企业数字化解决方案，以技术创新驱动政企数字化转型升级。</p></div>
+      <div class="footer-col"><h5>产品中心</h5><ul><li><a href="product-cloud.html">通友云平台</a></li><li><a href="product-smartcloud.html">通友数智云</a></li><li><a href="product-bigdata.html">通友大数据</a></li></ul></div>
+      <div class="footer-col"><h5>解决方案</h5><ul><li><a href="solution-management.html">企业管理方案</a></li><li><a href="solution-digital.html">数字化转型</a></li><li><a href="solution-smart.html">智慧管控平台</a></li><li><a href="solution-ai.html">AI赋能方案</a></li></ul></div>
+      <div class="footer-col"><h5>关于我们</h5><ul><li><a href="about.html">公司简介</a></li><li><a href="about-team.html">团队介绍</a></li><li><a href="news.html">新闻资讯</a></li><li><a href="about-careers.html">加入我们</a></li></ul></div>
+      <div class="footer-col"><h5>联系方式</h5><div class="footer-contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>江西省南昌市</div><div class="footer-contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>400-888-8888</div><div class="footer-contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contact@tongyou.com</div></div>
     </div>
     <div class="footer-bottom"><p>&copy; 2014-2026 江西通友科技有限公司 版权所有 | 赣ICP备XXXXXXXX号</p></div>
   </div>
 </footer>
 
-<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
-</button>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg></button>
 <script src="base.js"></script>
 <script>
-// Product tab filtering
+// Product tab switching
 document.addEventListener('click',function(e){
-  var tab=e.target.closest('.product-tab');
+  var tab=e.target.closest('.prod-tab');
   if(!tab)return;
-  var group=tab.parentElement;
-  group.querySelectorAll('.product-tab').forEach(function(t){t.classList.remove('active')});
+  document.querySelectorAll('.prod-tab').forEach(function(t){t.classList.remove('active')});
+  document.querySelectorAll('.prod-panel').forEach(function(p){p.classList.remove('active')});
   tab.classList.add('active');
-  var f=tab.dataset.filter;
-  document.querySelectorAll('#product-list .card').forEach(function(c){
-    if(f==='all'||c.dataset.cat===f){c.style.display='';c.classList.add('vis')}
-    else{c.style.display='none'}
-  });
+  var panel=document.getElementById(tab.dataset.panel);
+  if(panel){panel.classList.add('active')}
 });
 </script>
 </body>
